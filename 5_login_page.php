@@ -51,4 +51,4 @@
     }
   };
 </script>
-<?php include __DIR__ . 'login_footer.php'; ?>
+<?php include __DIR__ . '/parts/login_footer.php'; ?>
