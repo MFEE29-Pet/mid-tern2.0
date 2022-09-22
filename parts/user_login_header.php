@@ -19,7 +19,7 @@
     }
 
     body {
-      background: url('../images/original-f394852e3601f67a7c357c3a2f93e302.webp');
+      background: url('./images/original-f394852e3601f67a7c357c3a2f93e302.webp');
       font-family: 'Open Sans', sans-serif;
       display: flex;
       align-items: center;
