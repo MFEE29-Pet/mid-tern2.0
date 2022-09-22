@@ -54,7 +54,7 @@ $pageName = 'user_register_page';
       .then(obj => {
         if (obj.success) {
           alert("成功註冊");
-          location.href = "user_login_page.php"
+          location.href = "5_user_login_page.php"
         } else {
           console.log(obj);
           alert("註冊失敗");
