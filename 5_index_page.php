@@ -1,10 +1,10 @@
-<?php include __DIR__ . './NOT_TOUCH/admin_index/parts/connect_db.php';
+<?php include __DIR__ . '/parts/connect_db.php';
 $pageName = 'indexpage';
 ?>
-<?php include __DIR__ . './NOT_TOUCH/admin_index/parts/index_header.php'; ?>
+<?php include __DIR__ . '/parts/index_header.php'; ?>
 <style>
   .index_bg {
-    background: url('NOT_TOUCH/images/karsten-winegeart-5PVXkqt2s9k-unsplash_0.jpg');
+    background: url('./images/karsten-winegeart-5PVXkqt2s9k-unsplash_0.jpg');
     width: 100%;
     height: 100%;
     background-size: 105%;
@@ -51,7 +51,7 @@ $pageName = 'indexpage';
     font-family: 'Permanent Marker', cursive;
   }
 </style>
-<?php include __DIR__ . './NOT_TOUCH/admin_index/parts/index_navber.php'; ?>
+<?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="index_bg">
   <div class="index_box">
     <div class="left animate__animated animate__zoomIn">
@@ -61,5 +61,5 @@ $pageName = 'indexpage';
   </div>
 
 </div>
-<?php include __DIR__ . './NOT_TOUCH/admin_index/parts/index_script.php'; ?>
-<?php include __DIR__ . './NOT_TOUCH/admin_index/parts/index_footer.php'; ?>
+<?php include __DIR__ . '/parts/index_script.php'; ?>
+<?php include __DIR__ . '/parts/index_footer.php'; ?>
