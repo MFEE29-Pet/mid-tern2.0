@@ -1,7 +1,7 @@
-<?php include __DIR__ . '../../admin_index/parts/connect_db.php';
+<?php include __DIR__ . '/parts/connect_db.php';
 $pageName = 'user_register_page';
 ?>
-<?php include __DIR__ . './parts/user_register_header.php'; ?>
+<?php include __DIR__ . '/parts/user_register_header.php'; ?>
 
 <body>
   <div class="container">
@@ -41,12 +41,12 @@ $pageName = 'user_register_page';
       <button>Submit</button>
     </form>
   </div>
-<?php include __DIR__ . './parts/user_register_script.php'; ?>
+<?php include __DIR__ . '/parts/user_register_script.php'; ?>
 
 <script>
   function checkForm() {
     const fd = new FormData(document.form1);
-    fetch(`user_register_api.php`, {
+    fetch(`5_user_register_api.php`, {
         method: 'POST',
         body: fd
       })
@@ -54,7 +54,7 @@ $pageName = 'user_register_page';
       .then(obj => {
         if (obj.success) {
           alert("成功註冊");
-          location.href = "../user_login/user_login_page.php"
+          location.href = "user_login_page.php"
         } else {
           console.log(obj);
           alert("註冊失敗");
@@ -62,4 +62,4 @@ $pageName = 'user_register_page';
       })
   }
 </script>
-<?php include __DIR__ . './parts/user_register_footer.php'; ?>
+<?php include __DIR__ . '/parts/user_register_footer.php'; ?>
