@@ -1,9 +1,9 @@
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/connect_db.php';
+<?php include __DIR__ . '/parts/connect_db.php';
 $pageName = 'pet_insert_page';
 
 ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_header.php'; ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_navber.php'; ?>
+<?php include __DIR__ . '/parts/index_header.php'; ?>
+<?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
@@ -50,13 +50,13 @@ $pageName = 'pet_insert_page';
     </div>
   </div>
 </div>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_script.php'; ?>
+<?php include __DIR__ . '/parts/index_script.php'; ?>
 
 <script>
 
   function checkForm() {
     const fd = new FormData(document.form1);
-    fetch(`pet_insert_api.php`, {
+    fetch(`5_pet_insert_api.php`, {
         method: 'POST',
         body: fd
       })
@@ -65,7 +65,7 @@ $pageName = 'pet_insert_page';
 
         if (obj.success) {
           alert("新增完成");
-          location.href = "pet_list_page.php"
+          location.href = "5_pet_list_page.php"
         }else{
           console.log(obj);
           alert("新增失敗");
@@ -75,4 +75,4 @@ $pageName = 'pet_insert_page';
   }
 </script>
 
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_footer.php'; ?>
+<?php include __DIR__ . '/parts/index_footer.php'; ?>

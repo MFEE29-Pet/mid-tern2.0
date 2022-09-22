@@ -1,4 +1,4 @@
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/connect_db.php';
+<?php include __DIR__ . '/parts/connect_db.php';
 $pageName = 'listpage';
 
 $perPage = 5;
@@ -44,8 +44,8 @@ $output = [
 
 
 ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_header.php'; ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_navber.php'; ?>
+<?php include __DIR__ . '/parts/index_header.php'; ?>
+<?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
   <div class="row">
     <table class="table table-striped">
@@ -80,7 +80,7 @@ $output = [
             <td><?= $r['pet_gender'] ?></td>
             <td><?= $r['birth_control'] ?></td>
             <td>
-              <a href="pet_edit_page.php?sid=<?= $r['pet_number'] ?>">
+              <a href="5_pet_edit_page.php?sid=<?= $r['pet_number'] ?>">
                 <i class="fa-regular fa-pen-to-square"></i>
               </a>
             </td>
@@ -109,14 +109,14 @@ $output = [
     </nav>
   </div>
 </div>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_script.php'; ?>
+<?php include __DIR__ . '/parts/index_script.php'; ?>
 <script>
   const table = document.querySelector('table');
 
   function delete_it(pet_number) {
     if (confirm(`確定要刪除編號為${pet_number}的資料嗎?`)) {
-      location.href = `pet_delete_api.php?pet_number=${pet_number}`
+      location.href = `5_pet_delete_api.php?pet_number=${pet_number}`
     }
   }
 </script>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_footer.php'; ?>
+<?php include __DIR__ . '/parts/index_footer.php'; ?>
