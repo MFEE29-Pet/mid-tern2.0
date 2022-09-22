@@ -45,7 +45,7 @@
     const obj = await r.json();
     console.log(obj);
     if (obj.success) {
-      location.href = 'index_page.php'
+      location.href = '5_index_page.php'
     } else {
       alert(obj.error)
     }
