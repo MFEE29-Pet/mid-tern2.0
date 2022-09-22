@@ -74,7 +74,7 @@ if (!isset($_SESSION)) {
     <section class="content">
       <header class="p-3 text-white">
         <div class="header-box">
-        <img src="NOT_TOUCH\images\logo_white.png" alt="">
+        <img src="./images/logo_white.png" alt="">
           <div class="menu-btn">
             <i class="fa-solid fa-bars "></i>
           </div>
