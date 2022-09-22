@@ -35,20 +35,16 @@
     .main {
       width: 100%;
       height: 100vh;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      
     }
 
     .side-bar {
       width: 290px;
-      height: calc(100% - 70px);
       background: #a4c6eb;
       backdrop-filter: blur(15px);
-      position: fixed;
-      top: 70px;
-      left: -100%;
       overflow-y: auto;
     }
 
@@ -62,9 +58,9 @@
 
     }
 
-    .side-bar.active {
+    /* .side-bar.active {
       left: 0px;
-    }
+    } */
 
     .side-bar .menu {
       width: 100%;
@@ -115,14 +111,14 @@
       transform: rotate(90deg);
     }
 
-    .close-btn {
+    /* .close-btn {
       position: absolute;
       color: #fff;
       font-size: 20px;
       right: 0;
       margin: 25px;
       cursor: pointer;
-    }
+    } */
 
     .menu-btn {
       color: #fff;
@@ -171,11 +167,9 @@
 
     .content {
       width: 100%;
-      height: 100vh;
+      height: calc(100% - 70px);
       display: flex;
-      flex-direction: column;
       justify-content: center;
-      align-items: center;
     }
 
     .btn-nickname {
@@ -206,22 +200,20 @@
     }
 
     .table-con {
-      height: calc(100% - 70px);
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 50px;
-      width: 1400px;
+      padding-top: 50px;
+      width: calc(100% - 290px);
+      overflow-y: scroll;
+    }
+    .table-con::-webkit-scrollbar{
+      display: none;
     }
 
     img{
       width: 100px;
       margin-right: 20px;
-    }
-
-    .table-con.active {
-      align-self: flex-end;
-      width: calc(100% - 290px);
     }
 
     @media (max-width: 900px) {

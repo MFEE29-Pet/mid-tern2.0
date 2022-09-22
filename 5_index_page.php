@@ -14,10 +14,7 @@ $pageName = 'indexpage';
     justify-content: center;
   }
 
-  .table-con {
-    width: 100%;
-    margin-top: 0px;
-  }
+
 
   .index_box {
     width: 1000px;
