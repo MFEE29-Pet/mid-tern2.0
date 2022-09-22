@@ -72,7 +72,7 @@ if ($totalRows) {
             <td><?= $r['area_name'] ?></td>
             <td><?= $r['address_detail'] ?></td>
             <td>
-              <a href="contact_edit_page.php?sid=<?= $r['sid'] ?>">
+              <a href="5_contact_edit_page.php?sid=<?= $r['sid'] ?>">
                 <i class="fa-regular fa-pen-to-square"></i>
               </a>
             </td>
