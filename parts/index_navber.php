@@ -80,13 +80,13 @@ if (!isset($_SESSION)) {
           </div>
           <ul class="nav mb-2 justify-content-center mb-md-0">
             <li>
-              <a href="index_page.php" class="nav-link px-4 <?= $pageName == 'indexpage' ? 'active' : '' ?>">Home</a>
+              <a href="5_index_page.php" class="nav-link px-4 <?= $pageName == 'indexpage' ? 'active' : '' ?>">Home</a>
             </li>
             <li>
-              <a href="kunda/member_list_page.php" class="nav-link px-4 <?= $pageName == 'listpage' ? 'active' : '' ?>">列表</a>
+              <a href="5_member_list_page.php" class="nav-link px-4 <?= $pageName == 'listpage' ? 'active' : '' ?>">列表</a>
             </li>
             <li>
-              <a href="kunda/member_insert_page.php" class="nav-link px-4 <?= $pageName == 'insertpage' ? 'active' : '' ?>">新增</a>
+              <a href="5_member_insert_page.php" class="nav-link px-4 <?= $pageName == 'insertpage' ? 'active' : '' ?>">新增</a>
             </li>
           </ul>
           <div class="text-end">
