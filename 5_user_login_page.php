@@ -39,7 +39,7 @@ $pageName = 'user_register_page';
         .then(obj => {
           if (obj.success) {
             alert("成功登入");
-            location.href = "index_page.php"
+            location.href = "5_index_page.php"
           } else {
             console.log(obj);
             alert("登入失敗");
