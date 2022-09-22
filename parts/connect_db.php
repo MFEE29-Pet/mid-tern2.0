@@ -1,20 +1,20 @@
 <?php
 
-$db_host='localhost';
-$db_name='members';
-$db_user='root';
-$db_pass='1234';
+$db_host = 'localhost';
+$db_name = 'pets_project_all';
+$db_user = 'root';
+$db_pass = 'root';
 
-$dsn="mysql:host={$db_host};dbname={$db_name};charset=utf8";
+$dsn = "mysql:host={$db_host};dbname={$db_name};charset=utf8";
 
-$pdo_option=[
-  PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-  PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC
+$pdo_option = [
+  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 ];
 
-$pdo = new PDO($dsn,$db_user,$db_pass,$pdo_option);
+$pdo = new PDO($dsn, $db_user, $db_pass, $pdo_option);
 
-if(! isset($_SESSION)){
+if (!isset($_SESSION)) {
   session_start();
 }
-$pageName='';
+$pageName = '';
