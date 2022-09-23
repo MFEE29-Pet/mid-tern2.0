@@ -84,12 +84,15 @@ if (!isset($_SESSION)) {
         <div class="item">
           <a class="sub-btn">
             <i class="fa-solid fa-user-gear"></i>
-            Member
+            會員管理
             <i class="fas fa-angle-right dropdown"></i>
           </a>
           <div class="sub-menu">
-            <a href="#" class="sub-item">會員資料管理</a>
-            <a href="#" class="sub-item">寵物資料管理</a>
+            <a href="5_member_list_page.php" class="sub-item">會員基本資料管理</a>
+            <a href="5_contact_list_page.php" class="sub-item">會員聯絡資料管理</a>
+            <a href="5_pet_list_page.php" class="sub-item">寵物資料管理</a>
+            <a href="5_member_insert_page.php" class="sub-item">新增會員</a>
+            <a href="5_pet_insert_page.php" class="sub-item">新增寵物</a>
           </div>
         </div>
       </div>
