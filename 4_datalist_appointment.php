@@ -51,21 +51,20 @@ $sql = sprintf("SELECT a.*, c.`clinic_name` ,s.`symptom_name`
 $rows = $pdo->query($sql)->fetchAll();
 
 
-/*
-echo json_encode([
-    'totalRows' => $totalRows,
-    'totalPages' => $totalPages,
-    'perPage' => $perPage,
-    'page' => $page,
-    'rows' => $rows,
-]);
-exit;
-*/
+
+// echo json_encode([
+//     'totalRows' => $totalRows,
+//     'totalPages' => $totalPages,
+//     'perPage' => $perPage,
+//     'page' => $page,
+//     'rows' => $rows,
+// ]);
+// exit;
 
 
 ?>
 <?php include __DIR__ . '/parts/index_header.php'; ?>
-<?php include __DIR__ . '/parts/index_navbar.php'; ?>
+<?php include __DIR__ . '/parts/index_navber.php'; ?>
 
 
 <div class="container">

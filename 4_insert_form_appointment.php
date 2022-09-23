@@ -8,7 +8,7 @@ $sym = $pdo->query($spl)->fetchAll();
 
 ?>
 <?php require __DIR__ . '/parts/index_header.php'; ?>
-<?php include __DIR__ . '/parts/index_navbar.php'; ?>
+<?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
     <div class="container">
         <div class="row">
@@ -45,8 +45,7 @@ $sym = $pdo->query($spl)->fetchAll();
                                 <label for="clinic_sid" class="form-label" name="clinic_sid">診所名稱
                                 </label>
                                 <select name="clinic_sid" class="form-select" aria-label="Default select example">
-                                    <option selected></option>
-                                    <option value="1">毛茸茸貓狗診所
+                                    <option selected value="1">毛茸茸貓狗診所</option>
                                     <option value="2">尾巴搖搖診所</option>
                                     <option value="3">愛毛孩診所</option>
                                     <option value="4">汪喵醫療診所</option>

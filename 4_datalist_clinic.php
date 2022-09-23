@@ -37,7 +37,7 @@ $sql = sprintf("SELECT * FROM `clinic` ORDER BY `sid` DESC LIMIT %s,%s", ($page 
 
 ?>
 <?php include __DIR__ . '/parts/index_header.php'; ?>
-<?php include __DIR__ . '/parts/index_navbar.php'; ?>
+<?php include __DIR__ . '/parts/index_navber.php'; ?>
 
 
 <div class="container">
