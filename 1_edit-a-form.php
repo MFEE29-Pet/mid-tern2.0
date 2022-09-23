@@ -1,6 +1,5 @@
 <?php
 require __DIR__ . '/parts/connect_db.php';
-require __DIR__ . '/login-required.php';
 
 
 $sid = isset($_GET['sid']) ? intval($_GET['sid']) : 0;
