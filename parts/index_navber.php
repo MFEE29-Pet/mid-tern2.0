@@ -86,12 +86,14 @@ if (!isset($_SESSION)) {
           <div class="item">
             <a class="sub-btn">
               <i class="fa-solid fa-hospital"></i>
-              Hospital
+              醫院管理
               <i class="fas fa-angle-right dropdown"></i>
             </a>
             <div class="sub-menu">
-              <a href="#" class="sub-item">Sub Item 01</a>
-              <a href="#" class="sub-item">Sub Item 02</a>
+              <a href="4_datalist_clinic.php" class="sub-item">醫院資訊管理</a>
+              <a href="4_datalist_appointment.php" class="sub-item">掛號預約管理</a>
+              <a href="4_insert_form_clinic.php" class="sub-item">新增資院資訊</a>
+              <a href="4_insert_form_appointment.php" class="sub-item">新增掛號預約</a>
             </div>
           </div>
           <div class="item">
