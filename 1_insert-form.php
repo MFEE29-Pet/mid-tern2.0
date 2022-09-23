@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/parts/connect_db.php';
-require __DIR__ . '/login-required.php';
+require __DIR__ . '/1_login-required.php';
 
 
 

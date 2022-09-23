@@ -39,13 +39,12 @@ if (!isset($_SESSION)) {
         <div class="item">
           <a class="sub-btn">
             <i class="fas fa-table"></i>
-            Forum
+            論壇管理
             <i class="fas fa-angle-right dropdown"></i>
           </a>
           <div class="sub-menu">
-            <a href="#" class="sub-item">Sub Item 01</a>
-            <a href="#" class="sub-item">Sub Item 02</a>
-            <a href="#" class="sub-item">Sub Item 03</a>
+            <a href="1_forum-list.php" class="sub-item">文章列表</a>
+            <a href="1_insert-form.php" class="sub-item">新增文章</a>
           </div>
         </div>
         <div class="item">
