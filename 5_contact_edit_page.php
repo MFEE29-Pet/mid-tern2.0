@@ -1,10 +1,10 @@
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/connect_db.php';
+<?php require __DIR__ . '/parts/connect_db.php';
 $pageName = 'insertpage';
 
 
 $sid = isset($_GET['sid']) ? intval($_GET['sid']) : 0;
 if (empty($sid)) {
-  header('Location: contact_list_page.php');
+  header('Location: 5_contact_list_page.php');
   exit;
 }
 
@@ -27,14 +27,14 @@ $sql = "SELECT cad.*,md.`sid`,md.`name`,ad.`address_detail`,cd.`sid` city_sid,ar
   WHERE cad.`sid`=$sid";
 $r = $pdo->query($sql)->fetch();
 if (empty($r)) {
-  header('Location: member_list_page.php');
+  header('Location: 5_member_list_page.php');
   exit;
 }
 
 
 ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_header.php'; ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_navber.php'; ?>
+<?php require __DIR__ . '/parts/index_header.php'; ?>
+<?php require __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
@@ -83,7 +83,7 @@ if (empty($r)) {
     </div>
   </div>
 </div>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_script.php'; ?>
+<?php require __DIR__ . '/parts/index_script.php'; ?>
 
 <script>
   const areas = <?= json_encode($areas, JSON_UNESCAPED_UNICODE) ?>;
@@ -111,7 +111,7 @@ if (empty($r)) {
 
   function checkForm() {
     const fd = new FormData(document.form1);
-    fetch(`contact_edit_api.php`, {
+    fetch(`5_contact_edit_api.php`, {
         method: 'POST',
         body: fd
       })
@@ -119,11 +119,11 @@ if (empty($r)) {
       .then(obj => {
         if (obj.success) {
           alert("修改完成");
-          location.href = "contact_list_page.php"
+          location.href = "5_contact_list_page.php"
         } else {
           console.log(obj);
           if(confirm("資料沒有修改,確定不修改嗎?")){
-            location.href = "contact_list_page.php"
+            location.href = "5_contact_list_page.php"
           }else{
             location.reload();
           }
@@ -135,4 +135,4 @@ if (empty($r)) {
   }
 </script>
 
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_footer.php'; ?>
+<?php require __DIR__ . '/index_footer.php'; ?>

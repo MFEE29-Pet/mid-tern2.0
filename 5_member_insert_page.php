@@ -1,4 +1,4 @@
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/connect_db.php';
+<?php include __DIR__ . '/parts/connect_db.php';
 $pageName = 'insertpage';
 
 
@@ -9,8 +9,8 @@ $rowslv = $pdo->query($sqllv)->fetchAll();
 
 
 ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_header.php'; ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_navber.php'; ?>
+<?php include __DIR__ . '/parts/index_header.php'; ?>
+<?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
@@ -55,7 +55,7 @@ $rowslv = $pdo->query($sqllv)->fetchAll();
     </div>
   </div>
 </div>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_script.php'; ?>
+<?php include __DIR__ . '/parts/index_script.php'; ?>
 
 <script>
   let imgg = document.querySelector('#imgg');
@@ -67,7 +67,7 @@ $rowslv = $pdo->query($sqllv)->fetchAll();
 
   function checkForm() {
     const fd = new FormData(document.form1);
-    fetch(`member_insert_api.php`, {
+    fetch(`5_member_insert_api.php`, {
         method: 'POST',
         body: fd
       })
@@ -76,7 +76,7 @@ $rowslv = $pdo->query($sqllv)->fetchAll();
 
         if (obj.success) {
           alert("新增完成");
-          location.href = "member_list_page.php"
+          location.href = "5_member_list_page.php"
         }else{
           console.log(obj);
           alert("新增失敗");
@@ -86,4 +86,4 @@ $rowslv = $pdo->query($sqllv)->fetchAll();
   }
 </script>
 
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_footer.php'; ?>
+<?php include __DIR__ . '/parts/index_footer.php'; ?>

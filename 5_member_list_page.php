@@ -1,4 +1,4 @@
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/connect_db.php';
+<?php include __DIR__ . '/parts/connect_db.php';
 $pageName = 'listpage';
 
 $perPage = 5;
@@ -34,8 +34,8 @@ if ($totalRows) {
 
 
 ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_header.php'; ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_navber.php'; ?>
+<?php include __DIR__ . '/parts/index_header.php'; ?>
+<?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
   <div class="row">
     <table class="table table-striped">
@@ -72,7 +72,7 @@ if ($totalRows) {
             <td><img src="./store/<?=$r['member_photo']?>" alt=""></td>
             <td><?= $r['level_name'] ?></td>
             <td>
-              <a href="member_edit_page.php?sid=<?= $r['sid'] ?>">
+              <a href="5_member_edit_page.php?sid=<?= $r['sid'] ?>">
                 <i class="fa-regular fa-pen-to-square"></i>
               </a>
             </td>
@@ -101,14 +101,14 @@ if ($totalRows) {
     </nav>
   </div>
 </div>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_script.php'; ?>
+<?php include __DIR__ . '/parts/index_script.php'; ?>
 <script>
   const table = document.querySelector('table');
 
   function delete_it(sid) {
     if (confirm(`確定要刪除編號為${sid}的資料嗎?`)) {
-      location.href = `member_delete_api.php?sid=${sid}`
+      location.href = `5_member_delete_api.php?sid=${sid}`
     }
   }
 </script>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_footer.php'; ?>
+<?php include __DIR__ . '/parts/index_footer.php'; ?>

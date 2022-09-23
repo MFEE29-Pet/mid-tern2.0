@@ -10,17 +10,17 @@
       });
 
       // jquery for expand and collapse the sidebar
-      $('.menu-btn').click(function () {
-        $('.table-con').addClass('active');
-        $('.side-bar').addClass('active');
-        $('.menu-btn').css("visibility", "hidden");
-      });
+      // $('.menu-btn').click(function () {
+      //   $('.table-con').addClass('active');
+      //   $('.side-bar').addClass('active');
+      //   $('.menu-btn').css("visibility", "hidden");
+      // });
 
-      $('.close-btn').click(function () {
-        $('.table-con').removeClass('active');
-        $('.side-bar').removeClass('active');
-        $('.menu-btn').css("visibility", "visible");
-      });
+      // $('.close-btn').click(function () {
+      //   $('.table-con').removeClass('active');
+      //   $('.side-bar').removeClass('active');
+      //   $('.menu-btn').css("visibility", "visible");
+      // });
     });
     function outAdmin(){
       location.href='NOT_TOUCH/admin_login/logout_api.php'

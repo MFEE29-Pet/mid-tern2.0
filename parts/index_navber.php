@@ -6,10 +6,34 @@ if (!isset($_SESSION)) {
 
 <body>
   <main class="main">
+    <header class="p-3 text-white">
+        <div class="header-box">
+        <img src="./images/logo_white.png" alt="">
+          <!-- <div class="menu-btn">
+            <i class="fa-solid fa-bars "></i>
+          </div> -->
+          <ul class="nav mb-2 justify-content-center mb-md-0">
+            <li>
+              <a href="5_index_page.php" class="nav-link px-4 <?= $pageName == 'indexpage' ? 'active' : '' ?>">Home</a>
+            </li>
+            <li>
+              <a href="5_member_list_page.php" class="nav-link px-4 <?= $pageName == 'listpage' ? 'active' : '' ?>">列表</a>
+            </li>
+            <li>
+              <a href="5_member_insert_page.php" class="nav-link px-4 <?= $pageName == 'insertpage' ? 'active' : '' ?>">新增</a>
+            </li>
+          </ul>
+          <div class="text-end">
+            <button type="button" class="btn btn-nickname"><?= $_SESSION['admin']['nickname'] ?></button>
+            <button type="button" class="btn btn-reg" onclick="outAdmin()">登出</button>
+          </div>
+        </div>
+      </header>
+    <section class="content">
     <div class="side-bar">
-      <div class="close-btn">
+      <!-- <div class="close-btn">
         <i class="fa-solid fa-xmark"></i>
-      </div>
+      </div> -->
       <div class="menu">
         <div class="item"><a href="#"><i class="fas fa-desktop"></i>Dashboard</a></div>
         <div class="item">
@@ -71,28 +95,4 @@ if (!isset($_SESSION)) {
         </div>
       </div>
     </div>
-    <section class="content">
-      <header class="p-3 text-white">
-        <div class="header-box">
-        <img src="NOT_TOUCH\images\logo_white.png" alt="">
-          <div class="menu-btn">
-            <i class="fa-solid fa-bars "></i>
-          </div>
-          <ul class="nav mb-2 justify-content-center mb-md-0">
-            <li>
-              <a href="index_page.php" class="nav-link px-4 <?= $pageName == 'indexpage' ? 'active' : '' ?>">Home</a>
-            </li>
-            <li>
-              <a href="kunda/member_list_page.php" class="nav-link px-4 <?= $pageName == 'listpage' ? 'active' : '' ?>">列表</a>
-            </li>
-            <li>
-              <a href="kunda/member_insert_page.php" class="nav-link px-4 <?= $pageName == 'insertpage' ? 'active' : '' ?>">新增</a>
-            </li>
-          </ul>
-          <div class="text-end">
-            <button type="button" class="btn btn-nickname"><?= $_SESSION['admin']['nickname'] ?></button>
-            <button type="button" class="btn btn-reg" onclick="outAdmin()">登出</button>
-          </div>
-        </div>
-      </header>
       <div class="table-con">
