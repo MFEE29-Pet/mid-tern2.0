@@ -23,7 +23,7 @@
       // });
     });
     function outAdmin(){
-      location.href='NOT_TOUCH/admin_login/logout_api.php'
+      location.href='5_logout_api.php'
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
