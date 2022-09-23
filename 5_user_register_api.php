@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/connect_db.php';
+<?php include __DIR__ . '/parts/connect_db.php';
 header('Content-Type: application/json');
 $output = [
   'success' => false,

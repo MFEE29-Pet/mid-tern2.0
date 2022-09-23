@@ -1,10 +1,10 @@
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/connect_db.php';
+<?php include __DIR__ . '/parts/connect_db.php';
 $pageName = 'editpage';
 
 
 $sid = isset($_GET['sid']) ? intval($_GET['sid']) : 0;
 if (empty($sid)) {
-  header('Location: member_list_page.php');
+  header('Location: 5_member_list_page.php');
   exit;
 }
 
@@ -19,14 +19,14 @@ $sql = "SELECT md.*,ld.`level_name`
 $r = $pdo->query($sql)->fetch();
 
 if (empty($r)) {
-  header('Location: member_list_page.php');
+  header('Location: 5_member_list_page.php');
   exit;
 }
 
 
 ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_header.php'; ?>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_navber.php'; ?>
+<?php include __DIR__ . '/parts/index_header.php'; ?>
+<?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
@@ -73,7 +73,7 @@ if (empty($r)) {
     </div>
   </div>
 </div>
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_script.php'; ?>
+<?php include __DIR__ . '/parts/index_script.php'; ?>
 
 <script>
   let imgg = document.querySelector('#imgg');
@@ -85,7 +85,7 @@ if (empty($r)) {
 
   function checkForm() {
     const fd = new FormData(document.form1);
-    fetch(`member_edit_api.php`, {
+    fetch(`5_member_edit_api.php`, {
         method: 'POST',
         body: fd
       })
@@ -94,7 +94,7 @@ if (empty($r)) {
 
         if (obj.success) {
           alert("修改完成");
-          location.href = "member_list_page.php"
+          location.href = "5_member_list_page.php"
         } else {
           console.log(obj);
           alert("修改失敗");
@@ -104,4 +104,4 @@ if (empty($r)) {
   }
 </script>
 
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/index_footer.php'; ?>
+<?php include __DIR__ . '/parts/index_footer.php'; ?>

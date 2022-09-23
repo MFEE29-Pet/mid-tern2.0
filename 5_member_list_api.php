@@ -1,4 +1,4 @@
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/connect_db.php';
+<?php include __DIR__ . '/parts/connect_db.php';
 
 $perPage = 5;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;

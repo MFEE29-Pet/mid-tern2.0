@@ -19,7 +19,7 @@
     }
 
     body {
-      background: url('../images/image_processing20220919-24927-lpur8o.gif');
+      background: url('./images/image_processing20220919-24927-lpur8o.gif');
       font-family: 'Open Sans', sans-serif;
       display: flex;
       align-items: center;

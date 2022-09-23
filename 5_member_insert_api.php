@@ -1,4 +1,4 @@
-<?php include __DIR__ . '../../NOT_TOUCH/admin_index/parts/connect_db.php';
+<?php include __DIR__ . '/parts/connect_db.php';
 header('Content-Type: application/json');
 
 $folder = __DIR__ . '/store/';
@@ -51,6 +51,11 @@ if (empty($_POST['name'])) {
   exit;
 };
 
+$birthday = null;
+if (strtotime($_POST['birthday']) !== false) {
+  $birthday = $_POST['birthday'];
+};
+
 $sql =
   "INSERT INTO `members_data`(
    `name`, `username`, `gender`, 
@@ -60,6 +65,22 @@ $sql =
    )";
 
 $stmt = $pdo->prepare($sql);
+
+$sqlone =
+  "INSERT INTO `contact_data`(
+  `birthday`, `email`, `mobile`,`create_at`) VALUES (
+      ?, ?, ?, NOW()
+  )";
+
+$stmtone = $pdo->prepare($sqlone);
+
+$sqltwo =
+  "INSERT INTO `address_data`(
+  `city_sid`, `area_sid`, `address_detail`,`create_at`) VALUES (
+      ?, ?, ?, NOW()
+  )";
+
+$stmttwo = $pdo->prepare($sqltwo);
 
 
 try {
@@ -75,12 +96,47 @@ try {
   $output['error'] = $ex->getMessage();
 }
 
+try {
+  $stmtone->execute([
+    $birthday,
+    $_POST['email'],
+    $_POST['mobile']
+  ]);
+  
+} catch (PDOException $ex) {
+  $output['error'] = $ex->getMessage();
+}
 
-if ($stmt->rowCount()) {
+try {
+  $stmttwo->execute([
+    $_POST['city_name'],
+    $_POST['area_name'],
+    $_POST['address_detail']
+  ]);
+  
+} catch (PDOException $ex) {
+  $output['error'] = $ex->getMessage();
+}
+
+
+if ($stmt->rowCount() && $stmtone->rowCount() && $stmttwo->rowCount()) {
   $output['success'] = true;
 } else {
   if (empty($output['error']))
     $output['error'] = '資料沒有新增';
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 echo json_encode($output, JSON_UNESCAPED_UNICODE);

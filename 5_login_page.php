@@ -1,4 +1,4 @@
-<?php include __DIR__ . './NOT_TOUCH/admin_login/parts/login_header.php'; ?>
+<?php include __DIR__ . '/parts/login_header.php'; ?>
 
 <div class="container">
   <h1>Sign In</span></h1>
@@ -18,7 +18,7 @@
     </p>
   </form>
 </div>
-<?php include __DIR__ . './NOT_TOUCH/admin_login/parts/login_script.php'; ?>
+<?php include __DIR__ . '/parts/login_script.php'; ?>
 <script>
   //ckeckEye  script
   const ckeckEye = document.querySelector('#checkEye');
@@ -38,17 +38,17 @@
   //link login API
   async function checkForm() {
     const fd = new FormData(document.login_form);
-    const r = await fetch('NOT_TOUCH/admin_login/login_api.php', {
+    const r = await fetch('5_login_api.php', {
       method: 'POST',
       body: fd,
     });
     const obj = await r.json();
     console.log(obj);
     if (obj.success) {
-      location.href = 'index_page.php'
+      location.href = '5_index_page.php'
     } else {
       alert(obj.error)
     }
   };
 </script>
-<?php include __DIR__ . './NOT_TOUCH/admin_login/parts/login_footer.php'; ?>
+<?php include __DIR__ . '/parts/login_footer.php'; ?>

@@ -3,7 +3,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-if (empty($_SESSION['user1'])) {
+if (empty($_SESSION['user1']) || empty($_SESSION['admin'])) {
     header('Location: 5_user_login_page.php');
     exit;
 }

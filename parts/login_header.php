@@ -16,7 +16,7 @@
 
     body {
       font-family: "Muli", sans-serif;
-      background: url('NOT_TOUCH/images/karsten-winegeart-oU6KZTXhuvk-unsplash.jpg');
+      background: url('./images/karsten-winegeart-oU6KZTXhuvk-unsplash.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center 30%;

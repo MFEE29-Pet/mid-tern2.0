@@ -58,11 +58,11 @@ t.sid = ta.t_sid
             echo '未登入';
         else :
             echo $_SESSION['user1']['sid']; ?></a>
-    <a class="link d-block" href="5_logout_api.php" style="width:40px;">登出</a>
+    <a class="link d-block" href="1_user_logout_api.php" style="width:40px;">登出</a>
 <?php endif; ?>
 
 <a href="1_insert-form.php" class="btn btn-primary m-3">發表文章</a>
-<?php if (!empty($_SESSION['user1']) && $_SESSION['user1']['sid'] == $article[0]['m_sid']) { ?>
+<?php if ((!empty($_SESSION['user1']) && $_SESSION['user1']['sid'] == $article[0]['m_sid']) || (!empty($_SESSION['admin']))) { ?>
     <a href="1_edit-a-form.php?sid=<?= $article[0]['article_sid'] ?>" class="btn btn-primary m-3">編輯</a>
     <a href="1_delete-article.php?sid=<?= $article[0]['article_sid'] ?>" class="btn btn-primary m-3" onclick="return confirm('確定要刪除文章嗎?')">刪除</a>
 <? } else { ?>
@@ -98,8 +98,12 @@ t.sid = ta.t_sid
             <div class="card" style="width: 90%; margin: 10px 0px; padding: 15px;">
                 <div class="btn-group d-flex ">
                     <p>回應 by <?= $c['username'] ?></p>
-                    <?php if ($_SESSION['user1']['sid'] == $c['m_sid']) : ?>
-                        <a href="1_delete-reply.php?sid=<?= $c['r_sid'] ?>" class="btn-primary m-3" onclick="return confirm('確定要刪除回應嗎?')">刪除</a>
+                    <?php if ((!empty($_SESSION['admin']))) : ?>
+                        <a href="1_delete-reply.php?sid=<?= $c['r_sid'] ?>" class="btn-danger m-2 text-decoration-none" onclick="return confirm('確定要刪除回應嗎?')">刪除</a>
+                    <?php elseif ((!empty($_SESSION['user1'])) && ($_SESSION['user1']['sid'] == $c['m_sid'])) : ?>
+                        <a href="1_delete-reply.php?sid=<?= $c['r_sid'] ?>" class="btn-danger m-2 text-decoration-none" onclick="return confirm('確定要刪除回應嗎?')">刪除</a>
+                    <?php else : ?>
+                        <a href="1_delete-reply.php?sid=<?= $c['r_sid'] ?>" class="disable" onclick="return confirm('確定要刪除回應嗎?')"></a>
                     <?php endif; ?>
                 </div>
                 <p><?= $c['r_content'] ?></p>

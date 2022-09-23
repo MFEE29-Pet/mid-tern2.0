@@ -1,8 +1,7 @@
 <?php
-require __DIR__ . '/login-required.php';
 require __DIR__ . '/parts/connect_db.php';
 
-
+if ((!empty($_SESSION['user1'])) || (!empty($_SESSION['admin']))){
 header('Content-Type: application/json');
 
 $t_sql = "SELECT * FROM tag ";
@@ -103,3 +102,4 @@ foreach ($t_sid as $key => $t) {
 };
 
 echo json_encode($output, JSON_UNESCAPED_UNICODE);
+}
