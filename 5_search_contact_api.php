@@ -20,8 +20,8 @@ ON cd.`sid`=ad.`city_sid`
 JOIN `area_data` ard
 ON ard.`sid`=ad.`area_sid` ";
 
-if(chop($_POST['row']) === "sid"){
-  $member_sid = "sid LIKE '%".$_POST['search']."%'";
+if(chop($_POST['row']) === "member_sid"){
+  $member_sid = "md.`sid` LIKE '%".$_POST['search']."%'";
   $sql.="WHERE ".$member_sid;
 }elseif(chop($_POST['row']) === "birthday"){
   $birthday = "birthday LIKE '%".$_POST['search']."%'";
@@ -32,7 +32,20 @@ if(chop($_POST['row']) === "sid"){
 }elseif(chop($_POST['row']) === "mobile"){
   $mobile = "mobile LIKE '%".$_POST['search']."%'";
   $sql.="WHERE ".$mobile;
+}elseif(chop($_POST['row']) === "name"){
+  $name = "name LIKE '%".$_POST['search']."%'";
+  $sql.="WHERE ".$name;
+}elseif(chop($_POST['row']) === "city"){
+  $city = "city_name LIKE '%".$_POST['search']."%'";
+  $sql.="WHERE ".$city;
+}elseif(chop($_POST['row']) === "area"){
+  $area = "area_name LIKE '%".$_POST['search']."%'";
+  $sql.="WHERE ".$area;
+}elseif(chop($_POST['row']) === "address_detail"){
+  $address = "address_detail LIKE '%".$_POST['search']."%'";
+  $sql.="WHERE ".$address;
 }
+
 
 
 // $stmt1 = $pdo->prepare($sql);

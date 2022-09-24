@@ -56,10 +56,14 @@ if ($totalRows) {
     <form class="d-flex" name="form1" onsubmit="searchForm();return false;">
       <select class="form-select" aria-label="Default select example" name="row">
         <option selected>選擇搜尋欄位</option>
-        <option value="sid">會員編號</option>
+        <option value="member_sid">會員編號</option>
+        <option value="name">會員名字</option>
+        <option value="mobile">手機</option>
         <option value="birthday">生日</option>
         <option value="email">Email</option>
-        <option value="mobile">手機</option>
+        <option value="city">縣市</option>
+        <option value="area">區域</option>
+        <option value="address_detail">詳細地址</option>
       </select>
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
       <button class="btn btn-outline-success" type="submit">Search</button>
