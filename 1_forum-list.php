@@ -1,23 +1,35 @@
 <?php require __DIR__ . '/parts/connect_db.php';
 
-$sid = isset($_GET['sid']) ? intval($_GET['sid']) : 0;
-if (empty($sid)) {
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$sid = isset($_GET['sid']) ? intval($_GET['sid']) : 1;
+$cate = isset($_GET['cate']) ? intval($_GET['cate']) : 0;
+if (empty($page)) {
     header('Location: 1_basepage.php');
     exit;
 }
-
-$sql_p = "SELECT COUNT(1) FROM `article`";
-
+// if (empty($sid)) {
+//     header('Location: 1_basepage.php');
+//     exit;
+// }
+// $page = 0;
+// $display = 1;
+$offset = $page - 1;
+// $sql_p = "SELECT COUNT(1) FROM `article`";
+// $pages = $pdo->query($sql_p)->fetch(PDO::FETCH_NUM)[0];
 
 $sql = "SELECT a.* , m.* FROM `article` a
 JOIN `members_data` m 
 ON a.`m_sid` = m.`sid`
-WHERE a.`article_sid`=$sid ";
+LIMIT $offset , 1";
 $r = $pdo->query($sql)->fetch();
 if (empty($r)) {
     header('Location: 1_basepage.php');
     exit;
 }
+
+// echo $r['article_sid'];
+// echo $page;
+// exit;
 
 // tags 關聯
 $tags = $pdo->query("SELECT t.`tag_name` FROM `tag` t , `tag_article` ta
@@ -31,7 +43,10 @@ JOIN `members_data` m
 ON m.sid = r.m_sid
 WHERE r.a_sid = {$r['article_sid']}")->fetchAll();
 
-
+$stmt = $pdo->query("SELECT MIN(article_sid) FROM `article`");
+$firstArticle = $stmt->fetch(PDO::FETCH_NUM)[0];
+$stmt = $pdo->query("SELECT MAX(article_sid) FROM `article`");
+$lastArticle = $stmt->fetch(PDO::FETCH_NUM)[0];
 
 // echo json_encode($article, JSON_UNESCAPED_UNICODE);exit;
 
@@ -71,8 +86,8 @@ WHERE r.a_sid = {$r['article_sid']}")->fetchAll();
                         <a href="#" class="btn btn-info m-1"><?= $t['tag_name'] ?></a>
                     <?php endforeach; ?>
                     <br>
-                    <a href="?page=<?= $page - 1 ?>" class="btn btn-primary <?= 0 == $page ? 'disabled' : '' ?>">上一篇</a>
-                    <a href="?page=<?= $page + 1 ?>" class="btn btn-primary <?= $totalPages - 1 == $page ? 'disabled' : '' ?>">下一篇</a>
+                    <a href="?page=<?= $page - 1 ?>" class="btn btn-primary <?= $r['article_sid'] == $firstArticle ? 'disabled' : '' ?>">上一篇</a>
+                    <a href="?page=<?= $page + 1 ?>" class="btn btn-primary <?= $r['article_sid'] == $lastArticle ? 'disabled' : '' ?>">下一篇</a>
                 </div>
             </div>
         </div>

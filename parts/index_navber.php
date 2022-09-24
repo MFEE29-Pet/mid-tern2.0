@@ -25,20 +25,20 @@ if (!isset($_SESSION)) {
         </ul>
         <div class="text-end">
           <!-- <button type="button" class="btn btn-nickname"> -->
-            <?php if (!empty($_SESSION['admin'])) : ?>
-              <a class="btn btn-primary disable" href="#"><?= $_SESSION['admin']['nickname'] ?></a>
-            <?php else :?>
-              <a class="btn btn-primary" href="5_login_page.php"><?= "管理者登入" ?></a>
-            
-            <?php endif; ?>
+          <?php if (!empty($_SESSION['admin'])) : ?>
+            <a class="btn btn-primary disable" href="#"><?= $_SESSION['admin']['nickname'] ?></a>
+          <?php else : ?>
+            <a class="btn btn-primary" href="5_login_page.php"><?= "管理者登入" ?></a>
+
+          <?php endif; ?>
           <!-- </button> -->
-          
-            <?php if (!empty($_SESSION['admin'])) : ?>
-              <button type="button" class="btn btn-reg" onclick="outAdmin()" >管理者登出
-              </button>
-            
-            <?php endif; ?>
-          
+
+          <?php if (!empty($_SESSION['admin'])) : ?>
+            <button type="button" class="btn btn-reg" onclick="outAdmin()">管理者登出
+            </button>
+
+          <?php endif; ?>
+
         </div>
       </div>
     </header>
@@ -56,7 +56,7 @@ if (!isset($_SESSION)) {
               <i class="fas fa-angle-right dropdown"></i>
             </a>
             <div class="sub-menu">
-              <a href="1_forum-list.php" class="sub-item">文章列表</a>
+              <a href="1_basepage.php" class="sub-item">文章列表</a>
               <a href="1_insert-form.php" class="sub-item">新增文章</a>
             </div>
           </div>
