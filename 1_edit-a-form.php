@@ -104,11 +104,13 @@ $tag = $pdo->query($t_sql)->fetchAll();
                 console.log(obj);
                 if (!obj.success) {
                     if (confirm('確定不修改嗎?')) {
-                        location.href = '1_forum-list.php';
+                        // 回到原頁
+                        history.back();
                     }
                 } else {
+                    // 回到原頁
                     alert('修改完成');
-                    location.href = '1_forum-list.php';
+                    history.back();
                 }
             })
     }
