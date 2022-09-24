@@ -37,15 +37,6 @@ if ($totalPages) {
     $article = $pdo->query($sql)->fetchAll();
 }
 
-// 文章分類
-// $asel_sql = "SELECT a.*, m.`username`
-// FROM `article` a 
-// JOIN `members_data` m
-// ON a.`m_sid`=m.`sid` 
-// $where";
-// $cate_a = $pdo->query($asel_sql)->fetch();
-
-
 
 $ca_sql = "SELECT * FROM a_categories";
 $cates = $pdo->query($ca_sql)->fetchAll();
