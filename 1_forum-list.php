@@ -1,50 +1,52 @@
 <?php require __DIR__ . '/parts/connect_db.php';
 
-// get url
-$page = isset($_GET['page']) ? intval($_GET['page']) : 0;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$sid = isset($_GET['sid']) ? intval($_GET['sid']) : 1;
+$cate = isset($_GET['cate']) ? intval($_GET['cate']) : 0;
+if (empty($page)) {
+    header('Location: 1_basepage.php');
+    exit;
+}
+// if (empty($sid)) {
+//     header('Location: 1_basepage.php');
+//     exit;
+// }
+// $page = 0;
+// $display = 1;
+$offset = $page - 1;
+// $sql_p = "SELECT COUNT(1) FROM `article`";
+// $pages = $pdo->query($sql_p)->fetch(PDO::FETCH_NUM)[0];
 
-// 算筆數
-$c_sql = "SELECT COUNT(1) FROM article";
-$totalArt = $pdo->query($c_sql)->fetch(PDO::FETCH_NUM)[0];
-$totalPages = $totalArt;
-
-
-// 取得資料庫資料 JSON
-// ?page= 取得文章標題+內容 (一頁一篇)
-$article = [];
-// 如果有資料
-if ($totalPages) {
-    if ($page < 0) {
-        header('location: ?page=0');
-        exit;
-    }
-    if ($page > $totalPages) {
-        header('location: ?page=' . $totalPages);
-        exit;
-    }
-
-    $sql = sprintf("SELECT a.`article_sid`,a.`title`,a.`content`, m.`username`,a.`m_sid`,a.`created_at`
-    FROM `article` a 
-    JOIN `members_data` m
-    ON a.`m_sid`=m.`sid` ORDER BY article_sid LIMIT %s, %s ", $page, 1);
-    $article = $pdo->query($sql)->fetchAll();
+$sql = "SELECT a.* , m.* FROM `article` a
+JOIN `members_data` m 
+ON a.`m_sid` = m.`sid`
+LIMIT $offset , 1";
+$r = $pdo->query($sql)->fetch();
+if (empty($r)) {
+    header('Location: 1_basepage.php');
+    exit;
 }
 
-//回應&文章sid
+// echo $r['article_sid'];
+// echo $page;
+// exit;
+
+// tags 關聯
+$tags = $pdo->query("SELECT t.`tag_name` FROM `tag` t , `tag_article` ta
+WHERE
+{$r['article_sid']} = ta.a_sid and
+t.sid = ta.t_sid")->fetchAll();
+
+// 回應
 $comments = $pdo->query("SELECT r.* , m.* FROM `reply` r
 JOIN `members_data` m
 ON m.sid = r.m_sid
-WHERE a_sid={$article[0]['article_sid']}")->fetchAll();
+WHERE r.a_sid = {$r['article_sid']}")->fetchAll();
 
-// tags 關聯
-$tags = $pdo->query("SELECT t.tag_name FROM `tag` t ,
-`tag_article` ta 
-WHERE
-{$article[0]['article_sid']} = ta.a_sid and
-t.sid = ta.t_sid
-")->fetchALL();
-
-
+$stmt = $pdo->query("SELECT MIN(article_sid) FROM `article`");
+$firstArticle = $stmt->fetch(PDO::FETCH_NUM)[0];
+$stmt = $pdo->query("SELECT MAX(article_sid) FROM `article`");
+$lastArticle = $stmt->fetch(PDO::FETCH_NUM)[0];
 
 // echo json_encode($article, JSON_UNESCAPED_UNICODE);exit;
 
@@ -62,9 +64,9 @@ t.sid = ta.t_sid
 <?php endif; ?>
 
 <a href="1_insert-form.php" class="btn btn-primary m-3">發表文章</a>
-<?php if ((!empty($_SESSION['user1']) && $_SESSION['user1']['sid'] == $article[0]['m_sid']) || (!empty($_SESSION['admin']))) { ?>
-    <a href="1_edit-a-form.php?sid=<?= $article[0]['article_sid'] ?>" class="btn btn-primary m-3">編輯</a>
-    <a href="1_delete-article.php?sid=<?= $article[0]['article_sid'] ?>" class="btn btn-primary m-3" onclick="return confirm('確定要刪除文章嗎?')">刪除</a>
+<?php if ((!empty($_SESSION['user1']) && $_SESSION['user1']['sid'] == $r['m_sid']) || (!empty($_SESSION['admin']))) { ?>
+    <a href="1_edit-a-form.php?sid=<?= $r['article_sid'] ?>" class="btn btn-primary m-3">編輯</a>
+    <a href="1_delete-article.php?sid=<?= $r['article_sid'] ?>" class="btn btn-primary m-3" onclick="return confirm('確定要刪除文章嗎?')">刪除</a>
 <? } else { ?>
     <!-- 空 -->
 <?php } ?>
@@ -73,20 +75,19 @@ t.sid = ta.t_sid
     <div class="row d-flex justify-content-center">
         <div class="card" style="width: 90%;">
             <div class="card-body">
-                <?php foreach ($article as $a) : ?>
-                    <h5 class="card-title"><?= htmlentities($a['title']) ?></h5>
-                    <p><?= $a['created_at'] ?></p>
-                    <h6>作者:<?= $a['username'] ?></h6>
-                    <pre style="height: 500px;" class="card-text"><?= $a['content'] ?></pre>
-                <?php endforeach; ?>
+                <h5 class="card-title"><?= htmlentities($r['title']) ?></h5>
+                <p><?= $r['created_at'] ?></p>
+                <h6>作者:<?= $r['username'] ?></h6>
+                <pre style="height: 500px;" class="card-text"><?= $r['content'] ?></pre>
+
 
                 <div class="btn_group">
                     <?php foreach ($tags as $t) : ?>
                         <a href="#" class="btn btn-info m-1"><?= $t['tag_name'] ?></a>
                     <?php endforeach; ?>
                     <br>
-                    <a href="?page=<?= $page - 1 ?>" class="btn btn-primary <?= 0 == $page ? 'disabled' : '' ?>">上一篇</a>
-                    <a href="?page=<?= $page + 1 ?>" class="btn btn-primary <?= $totalPages - 1 == $page ? 'disabled' : '' ?>">下一篇</a>
+                    <a href="?page=<?= $page - 1 ?>" class="btn btn-primary <?= $r['article_sid'] == $firstArticle ? 'disabled' : '' ?>">上一篇</a>
+                    <a href="?page=<?= $page + 1 ?>" class="btn btn-primary <?= $r['article_sid'] == $lastArticle ? 'disabled' : '' ?>">下一篇</a>
                 </div>
             </div>
         </div>
