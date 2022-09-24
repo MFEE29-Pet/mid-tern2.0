@@ -23,7 +23,7 @@ if ($totalPages) {
         exit;
     }
 
-    $sql = sprintf("SELECT a.`article_sid`,a.`title`,a.`content`, m.`username`,a.`m_sid`
+    $sql = sprintf("SELECT a.`article_sid`,a.`title`,a.`content`, m.`username`,a.`m_sid`,a.`created_at`
     FROM `article` a 
     JOIN `members_data` m
     ON a.`m_sid`=m.`sid` ORDER BY article_sid LIMIT %s, %s ", $page, 1);
@@ -75,6 +75,7 @@ t.sid = ta.t_sid
             <div class="card-body">
                 <?php foreach ($article as $a) : ?>
                     <h5 class="card-title"><?= htmlentities($a['title']) ?></h5>
+                    <p><?= $a['created_at'] ?></p>
                     <h6>作者:<?= $a['username'] ?></h6>
                     <pre style="height: 500px;" class="card-text"><?= $a['content'] ?></pre>
                 <?php endforeach; ?>
@@ -97,7 +98,8 @@ t.sid = ta.t_sid
         foreach ($comments as $c) : ?>
             <div class="card" style="width: 90%; margin: 10px 0px; padding: 15px;">
                 <div class="btn-group d-flex ">
-                    <p>回應 by <?= $c['username'] ?></p>
+                    <p style="margin-right:auto;">回應 by <?= $c['username'] ?></p>
+                    <p><?= $c['created_at'] ?></p>
                     <?php if ((!empty($_SESSION['admin']))) : ?>
                         <a href="1_delete-reply.php?sid=<?= $c['r_sid'] ?>" class="btn-danger m-2 text-decoration-none" onclick="return confirm('確定要刪除回應嗎?')">刪除</a>
                     <?php elseif ((!empty($_SESSION['user1'])) && ($_SESSION['user1']['sid'] == $c['m_sid'])) : ?>
