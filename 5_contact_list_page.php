@@ -44,11 +44,21 @@ if ($totalRows) {
 <?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
   <div class="row">
+    <form class="d-flex" name="form1" onsubmit="searchForm();return false;">
+      <select class="form-select" aria-label="Default select example" name="row">
+        <option selected>選擇搜尋欄位</option>
+        <option value="sid">會員編號</option>
+        <option value="birthday">生日</option>
+        <option value="email">Email</option>
+        <option value="mobile">手機</option>
+      </select>
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
     <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col">會員編號</th>
-          <th scope="col">姓名</th>
           <th scope="col">生日</th>
           <th scope="col">Email</th>
           <th scope="col">手機</th>
@@ -60,7 +70,7 @@ if ($totalRows) {
           </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="table_change">
         <?php foreach ($rows as $r) : ?>
           <tr>
             <td><?= $r['sid'] ?></td>
@@ -99,6 +109,7 @@ if ($totalRows) {
         </li>
       </ul>
     </nav>
+
   </div>
 </div>
 <?php include __DIR__ . '/parts/index_script.php'; ?>
@@ -109,6 +120,28 @@ if ($totalRows) {
     if (confirm(`確定要刪除編號為${sid}的資料嗎?`)) {
       location.href = `5_contact_delete_api.php?sid=${sid}`
     }
+  }
+
+  function searchForm() {
+    const fd = new FormData(document.form1);
+
+    fetch('5_search_contact_api.php',{
+      method:'POST',
+      body:fd
+    })
+    .then(r=>r.json())
+    .then(obj=>{
+      const table_change = document.querySelector('#table_change');
+      table_change.innerHTML = obj.map(el=>{
+        return `<tr>
+                  <td>${el.sid}</td>
+                  <td>${el.birthday}</td>
+                  <td>${el.email}</td>
+                  <td>${el.mobile}</td>
+                </tr>`;
+      }).join('')
+      
+    })
   }
 </script>
 <?php include __DIR__ . '/parts/index_footer.php'; ?>
