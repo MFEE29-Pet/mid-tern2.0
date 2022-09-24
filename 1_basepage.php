@@ -10,8 +10,6 @@ $totalArt = $pdo->query($c_sql)->fetch(PDO::FETCH_NUM)[0];
 $totalPages = ceil($totalArt / $perPage);
 
 
-// 取得資料庫資料 JSON
-// ?page= 取得文章標題+內容 (一頁一篇)
 $article = [];
 // 如果有資料
 if ($totalPages) {
@@ -105,34 +103,5 @@ if ($totalPages) {
 </div>
 
 
-<?php include __DIR__ . '/parts/index_script.php'; ?>
-<script>
-    // function checkForm() {
-    //     const fd = new FormData(document.form1);
-
-    //     //測試 （可迭代用for of 一筆一筆取出資料）
-    //     for (let k of fd.keys()) {
-    //         console.log(`${k} : ${fd.get(k)}`);
-    //     }
-
-    //     // TODO: 檢查欄位
-
-    //     fetch('insert-reply-api.php', {
-    //             method: 'POST',
-    //             body: fd
-    //         })
-    //         .then(r => r.json())
-    //         .then(obj => {
-    //             console.log(obj);
-    //             if (!obj.success) {
-    //                 alert(obj.error);
-    //             } else {
-    //                 alert('新增完成');
-    //                 location.href = 'forum-list.php';
-    //             }
-    //         })
-    // }
-</script>
-<?php include __DIR__ . '/parts/index_footer.php'; ?>
 <?php include __DIR__ . '/parts/index_script.php'; ?>
 <?php include __DIR__ . '/parts/index_footer.php'; ?>

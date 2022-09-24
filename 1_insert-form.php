@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/1_login-required.php';
 require __DIR__ . '/parts/connect_db.php';
 
 
@@ -15,12 +16,6 @@ $tag = $pdo->query($t_sql)->fetchAll();
 <?php include __DIR__ . '/parts/index_header.php'; ?>
 <?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
-    <a class="nav-link" href="#">目前使用者:
-        <?php if (empty($_SESSION['user1'])) {
-            echo '未登入';
-        } else {
-            echo $_SESSION['user1']['sid'];
-        } ?></a>
     <div class="row">
         <form name="form1" onsubmit="checkForm(); return false;">
             <h5>新增文章</h5>
