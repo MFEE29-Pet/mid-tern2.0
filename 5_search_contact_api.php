@@ -9,7 +9,16 @@ $output = [
   'postData' => $_POST, //除錯用的
 ];
 
-$sql = "SELECT * FROM `contact_data` ";
+$sql = "SELECT cad.*,md.`sid`,md.`name`,ad.`address_detail`,cd.`city_name`,ard.`area_name` 
+FROM contact_data cad
+JOIN `members_data` md
+ON cad.`sid`= md.`sid`
+JOIN `address_data` ad
+ON cad.`sid`= ad.`sid`
+JOIN `city_data` cd
+ON cd.`sid`=ad.`city_sid`
+JOIN `area_data` ard
+ON ard.`sid`=ad.`area_sid` ";
 
 if(chop($_POST['row']) === "sid"){
   $member_sid = "sid LIKE '%".$_POST['search']."%'";
@@ -24,6 +33,7 @@ if(chop($_POST['row']) === "sid"){
   $mobile = "mobile LIKE '%".$_POST['search']."%'";
   $sql.="WHERE ".$mobile;
 }
+
 
 // $stmt1 = $pdo->prepare($sql);
 
