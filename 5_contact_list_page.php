@@ -4,7 +4,16 @@ $pageName = 'listpage';
 $perPage = 5;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-$t_sql = "SELECT COUNT(1) FROM contact_data";
+$t_sql = "SELECT COUNT(1) 
+    FROM contact_data cad
+    JOIN `members_data` md
+    ON cad.`sid`= md.`sid`
+    JOIN `address_data` ad
+    ON cad.`sid`= ad.`sid`
+    JOIN `city_data` cd
+    ON cd.`sid`=ad.`city_sid`
+    JOIN `area_data` ard
+    ON ard.`sid`=ad.`area_sid`";
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
 
 $totalPages = ceil($totalRows / $perPage);
@@ -125,23 +134,23 @@ if ($totalRows) {
   function searchForm() {
     const fd = new FormData(document.form1);
 
-    fetch('5_search_contact_api.php',{
-      method:'POST',
-      body:fd
-    })
-    .then(r=>r.json())
-    .then(obj=>{
-      const table_change = document.querySelector('#table_change');
-      table_change.innerHTML = obj.map(el=>{
-        return `<tr>
+    fetch('5_search_contact_api.php', {
+        method: 'POST',
+        body: fd
+      })
+      .then(r => r.json())
+      .then(obj => {
+        const table_change = document.querySelector('#table_change');
+        table_change.innerHTML = obj.map(el => {
+          return `<tr>
                   <td>${el.sid}</td>
                   <td>${el.birthday}</td>
                   <td>${el.email}</td>
                   <td>${el.mobile}</td>
                 </tr>`;
-      }).join('')
-      
-    })
+        }).join('')
+
+      })
   }
 </script>
 <?php include __DIR__ . '/parts/index_footer.php'; ?>
