@@ -68,6 +68,7 @@ if ($totalRows) {
       <thead>
         <tr>
           <th scope="col">會員編號</th>
+          <th scope="col">會員名字</th>
           <th scope="col">生日</th>
           <th scope="col">Email</th>
           <th scope="col">手機</th>
@@ -144,9 +145,18 @@ if ($totalRows) {
         table_change.innerHTML = obj.map(el => {
           return `<tr>
                   <td>${el.sid}</td>
+                  <td>${el.name}</td>
                   <td>${el.birthday}</td>
                   <td>${el.email}</td>
                   <td>${el.mobile}</td>
+                  <td>${el.city_name}</td>
+                  <td>${el.area_name}</td>
+                  <td>${el.address_detail}</td>
+                  <td>
+                    <a href="5_contact_edit_page.php?sid=${el.sid}">
+                      <i class="fa-regular fa-pen-to-square"></i>
+                    </a>
+                  </td>
                 </tr>`;
         }).join('')
 
