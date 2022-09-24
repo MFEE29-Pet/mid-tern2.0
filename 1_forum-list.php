@@ -1,48 +1,35 @@
 <?php require __DIR__ . '/parts/connect_db.php';
 
-// get url
-$page = isset($_GET['page']) ? intval($_GET['page']) : 0;
-
-// 算筆數
-$c_sql = "SELECT COUNT(1) FROM article";
-$totalArt = $pdo->query($c_sql)->fetch(PDO::FETCH_NUM)[0];
-$totalPages = $totalArt;
-
-
-// 取得資料庫資料 JSON
-// ?page= 取得文章標題+內容 (一頁一篇)
-$article = [];
-// 如果有資料
-if ($totalPages) {
-    if ($page < 0) {
-        header('location: ?page=0');
-        exit;
-    }
-    if ($page > $totalPages) {
-        header('location: ?page=' . $totalPages);
-        exit;
-    }
-
-    $sql = sprintf("SELECT a.`article_sid`,a.`title`,a.`content`, m.`username`,a.`m_sid`,a.`created_at`
-    FROM `article` a 
-    JOIN `members_data` m
-    ON a.`m_sid`=m.`sid` ORDER BY article_sid LIMIT %s, %s ", $page, 1);
-    $article = $pdo->query($sql)->fetchAll();
+$sid = isset($_GET['sid']) ? intval($_GET['sid']) : 0;
+if (empty($sid)) {
+    header('Location: 1_basepage.php');
+    exit;
 }
 
-//回應&文章sid
+$sql_p = "SELECT COUNT(1) FROM `article`";
+
+
+$sql = "SELECT a.* , m.* FROM `article` a
+JOIN `members_data` m 
+ON a.`m_sid` = m.`sid`
+WHERE a.`article_sid`=$sid ";
+$r = $pdo->query($sql)->fetch();
+if (empty($r)) {
+    header('Location: 1_basepage.php');
+    exit;
+}
+
+// tags 關聯
+$tags = $pdo->query("SELECT t.`tag_name` FROM `tag` t , `tag_article` ta
+WHERE
+{$r['article_sid']} = ta.a_sid and
+t.sid = ta.t_sid")->fetchAll();
+
+// 回應
 $comments = $pdo->query("SELECT r.* , m.* FROM `reply` r
 JOIN `members_data` m
 ON m.sid = r.m_sid
-WHERE a_sid={$article[0]['article_sid']}")->fetchAll();
-
-// tags 關聯
-$tags = $pdo->query("SELECT t.tag_name FROM `tag` t ,
-`tag_article` ta 
-WHERE
-{$article[0]['article_sid']} = ta.a_sid and
-t.sid = ta.t_sid
-")->fetchALL();
+WHERE r.a_sid = {$r['article_sid']}")->fetchAll();
 
 
 
@@ -62,9 +49,9 @@ t.sid = ta.t_sid
 <?php endif; ?>
 
 <a href="1_insert-form.php" class="btn btn-primary m-3">發表文章</a>
-<?php if ((!empty($_SESSION['user1']) && $_SESSION['user1']['sid'] == $article[0]['m_sid']) || (!empty($_SESSION['admin']))) { ?>
-    <a href="1_edit-a-form.php?sid=<?= $article[0]['article_sid'] ?>" class="btn btn-primary m-3">編輯</a>
-    <a href="1_delete-article.php?sid=<?= $article[0]['article_sid'] ?>" class="btn btn-primary m-3" onclick="return confirm('確定要刪除文章嗎?')">刪除</a>
+<?php if ((!empty($_SESSION['user1']) && $_SESSION['user1']['sid'] == $r['m_sid']) || (!empty($_SESSION['admin']))) { ?>
+    <a href="1_edit-a-form.php?sid=<?= $r['article_sid'] ?>" class="btn btn-primary m-3">編輯</a>
+    <a href="1_delete-article.php?sid=<?= $r['article_sid'] ?>" class="btn btn-primary m-3" onclick="return confirm('確定要刪除文章嗎?')">刪除</a>
 <? } else { ?>
     <!-- 空 -->
 <?php } ?>
@@ -73,12 +60,11 @@ t.sid = ta.t_sid
     <div class="row d-flex justify-content-center">
         <div class="card" style="width: 90%;">
             <div class="card-body">
-                <?php foreach ($article as $a) : ?>
-                    <h5 class="card-title"><?= htmlentities($a['title']) ?></h5>
-                    <p><?= $a['created_at'] ?></p>
-                    <h6>作者:<?= $a['username'] ?></h6>
-                    <pre style="height: 500px;" class="card-text"><?= $a['content'] ?></pre>
-                <?php endforeach; ?>
+                <h5 class="card-title"><?= htmlentities($r['title']) ?></h5>
+                <p><?= $r['created_at'] ?></p>
+                <h6>作者:<?= $r['username'] ?></h6>
+                <pre style="height: 500px;" class="card-text"><?= $r['content'] ?></pre>
+
 
                 <div class="btn_group">
                     <?php foreach ($tags as $t) : ?>

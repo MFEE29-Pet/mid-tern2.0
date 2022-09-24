@@ -67,7 +67,7 @@ HomePage
                 <div class="card-body">
                     <h5 class="card-title"><?= $a['title'] ?></h5>
                     <h6>作者:<?= $a['username'] ?></h6>
-                    <a class="btn btn-primary" href="1_forum-list.php?page=<?= $a['article_sid'] ?>">詳細內容</a>
+                    <a class="btn btn-primary" href="1_forum-list.php?sid=<?= $a['article_sid'] ?>">詳細內容</a>
                 </div>
             </div>
         <?php endforeach; ?>
