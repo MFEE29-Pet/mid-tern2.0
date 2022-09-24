@@ -128,7 +128,7 @@ $lastArticle = $stmt->fetch(PDO::FETCH_NUM)[0];
                     <label for="content" class="form-label">回應</label>
                     <textarea name="content" class="form-control" id="content" placeholder="請輸入內容..." rows="5"></textarea>
             </div>
-            <input type="text" value="<?= $article[0]['article_sid'] ?>" style="display:none;" name="a_sid_get">
+            <input type="text" value="<?= $r['article_sid'] ?>" style="display:none;" name="a_sid_get">
             <button type="submit" class="btn btn-primary">Submit</button>
         <?php endif; ?>
         </form>

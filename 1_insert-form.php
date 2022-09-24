@@ -72,7 +72,7 @@ $tag = $pdo->query($t_sql)->fetchAll();
                     alert(obj.error);
                 } else {
                     alert('新增完成');
-                    location.href = '1_forum-list.php';
+                    location.href = '1_basepage.php';
                 }
             })
     }
