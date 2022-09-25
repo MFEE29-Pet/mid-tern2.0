@@ -20,30 +20,30 @@ ON cd.`sid`=ad.`city_sid`
 JOIN `area_data` ard
 ON ard.`sid`=ad.`area_sid` ";
 
-if(chop($_POST['sid']) === "member_sid"){
-  $member_sid = "md.`sid` LIKE '%".$_POST['suggest']."%'";
-  $sql.="WHERE ".$member_sid;
-}elseif(chop($_POST['sid']) === "birthday"){
-  $birthday = "birthday LIKE '%".$_POST['suggest']."%'";
-  $sql.="WHERE ".$birthday;
-}elseif(chop($_POST['sid']) === "email"){
-  $email = "email LIKE '%".$_POST['suggest']."%'";
-  $sql.="WHERE ".$email;
-}elseif(chop($_POST['sid']) === "mobile"){
-  $mobile = "mobile LIKE '%".$_POST['suggest']."%'";
-  $sql.="WHERE ".$mobile;
-}elseif(chop($_POST['sid']) === "name"){
-  $name = "name LIKE '%".$_POST['suggest']."%'";
-  $sql.="WHERE ".$name;
-}elseif(chop($_POST['sid']) === "city"){
-  $city = "city_name LIKE '%".$_POST['suggest']."%'";
-  $sql.="WHERE ".$city;
-}elseif(chop($_POST['sid']) === "area"){
-  $area = "area_name LIKE '%".$_POST['suggest']."%'";
-  $sql.="WHERE ".$area;
-}elseif(chop($_POST['sid']) === "address_detail"){
-  $address = "address_detail LIKE '%".$_POST['suggest']."%'";
-  $sql.="WHERE ".$address;
+if (chop($_POST['sid']) === "member_sid") {
+  $member_sid = "md.`sid` LIKE '%" . $_POST['suggest'] . "%'";
+  $sql .= "WHERE " . $member_sid;
+} elseif (chop($_POST['sid']) === "birthday") {
+  $birthday = "birthday LIKE '%" . $_POST['suggest'] . "%'";
+  $sql .= "WHERE " . $birthday;
+} elseif (chop($_POST['sid']) === "email") {
+  $email = "email LIKE '%" . $_POST['suggest'] . "%'";
+  $sql .= "WHERE " . $email;
+} elseif (chop($_POST['sid']) === "mobile") {
+  $mobile = "mobile LIKE '%" . $_POST['suggest'] . "%'";
+  $sql .= "WHERE " . $mobile;
+} elseif (chop($_POST['sid']) === "name") {
+  $name = "name LIKE '%" . $_POST['suggest'] . "%'";
+  $sql .= "WHERE " . $name;
+} elseif (chop($_POST['sid']) === "city") {
+  $city = "city_name LIKE '%" . $_POST['suggest'] . "%'";
+  $sql .= "WHERE " . $city;
+} elseif (chop($_POST['sid']) === "area") {
+  $area = "area_name LIKE '%" . $_POST['suggest'] . "%'";
+  $sql .= "WHERE " . $area;
+} elseif (chop($_POST['sid']) === "address_detail") {
+  $address = "address_detail LIKE '%" . $_POST['suggest'] . "%'";
+  $sql .= "WHERE " . $address;
 }
 
 
@@ -53,9 +53,47 @@ if(chop($_POST['sid']) === "member_sid"){
 // $stmt1 = $pdo->prepare($sql);
 
 $rows = $pdo->query($sql)->fetchAll();
-$suggest = array();
+$arr = array();
 
-array_push($suggest,$rows);
+
+
+
+if (chop($_POST['sid']) === "member_sid") {
+  foreach ($rows as $r) {
+    array_push($arr, $r['member_sid']);
+  }
+} elseif (chop($_POST['sid']) === "birthday") {
+  foreach ($rows as $r) {
+    array_push($arr, $r['birthday']);
+  }
+} elseif (chop($_POST['sid']) === "email") {
+  foreach ($rows as $r) {
+    array_push($arr, $r['email']);
+  }
+} elseif (chop($_POST['sid']) === "mobile") {
+  foreach ($rows as $r) {
+    array_push($arr, $r['mobile']);
+  }
+} elseif (chop($_POST['sid']) === "name") {
+  foreach ($rows as $r) {
+    array_push($arr, $r['name']);
+  }
+} elseif (chop($_POST['sid']) === "city") {
+  foreach ($rows as $r) {
+    array_push($arr, $r['city']);
+  }
+} elseif (chop($_POST['sid']) === "area") {
+  foreach ($rows as $r) {
+    array_push($arr, $r['area']);
+  }
+} elseif (chop($_POST['sid']) === "address_detail") {
+  foreach ($rows as $r) {
+    array_push($arr, $r['address_detail']);
+  }
+}
+
+
+
 
 
 // if ($stmt1->rowCount()) {
@@ -66,4 +104,4 @@ array_push($suggest,$rows);
 // }
 
 
-echo json_encode($suggest, JSON_UNESCAPED_UNICODE);
+echo json_encode($arr, JSON_UNESCAPED_UNICODE);

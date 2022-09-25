@@ -53,7 +53,7 @@ if ($totalRows) {
 <?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
   <div class="row">
-    <form class="d-flex" name="form1" onsubmit="searchForm();return false;" >
+    <form class="d-flex" name="form1" oninput="searchForm();return false;">
       <select class="form-select" aria-label="Default select example" name="row" id="row">
         <option selected>選擇搜尋欄位</option>
         <option value="member_sid">會員編號</option>
@@ -68,6 +68,8 @@ if ($totalRows) {
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search" onkeyup="getSuggest();return false;">
       <button class="btn btn-outline-success me-1" type="submit">Search</button>
       <button class="btn btn-outline-success" type="submit" onclick="back()">Back</button>
+      <div class="result" id="result" style="position: absolute;top:157px;right:319px;width:565px">
+      </div>
     </form>
     <table class="table table-striped">
       <thead>
@@ -126,6 +128,7 @@ if ($totalRows) {
     </nav>
 
   </div>
+  
 </div>
 <?php include __DIR__ . '/parts/index_script.php'; ?>
 <script>
@@ -140,7 +143,7 @@ if ($totalRows) {
   function searchForm() {
     const fd = new FormData(document.form1);
     const page = document.querySelector('#page');
-    page.style.visibility='hidden';
+    page.style.visibility = 'hidden';
 
     fetch('5_search_contact_api.php', {
         method: 'POST',
@@ -171,25 +174,44 @@ if ($totalRows) {
   };
 
   function getSuggest() {
-    const sel = document.querySelector('#row').value
-    const suggest = document.querySelector('#search').value
+    const sel = document.querySelector('#row').value;
+    const suggest = document.querySelector('#search').value;
+    const re = document.querySelector('#result');
 
+    const fd = new URLSearchParams({
+      sid: sel,
+      suggest: suggest
+    });
+    let docFrag = document.createDocumentFragment();
 
-    const fd = new URLSearchParams({sid:sel,suggest:suggest});
+    while (re.hasChildNodes()) {
+      re.removeChild(re.lastChild);
+    }
 
     fetch(`5_get_suggest_api.php`, {
         method: 'POST',
-        body:fd,
-        headers:{
-          'Content-Type':'application/x-www-form-urlencoded;charset=utf-8'
+        body: fd,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }
       })
       .then(r => r.json())
       .then(obj => {
         console.log(obj)
+        const arg = [...obj]
+        arg.forEach((value, index) => {
+          let btn = document.createElement("input");
+          btn.setAttribute("type", "text");
+          btn.setAttribute("value", value);
+          btn.classList.add("form-control","me-2");
+          docFrag.appendChild(btn);
+          re.appendChild(docFrag);
+        })
+
       })
   }
-  function back(){
+
+  function back() {
     location.reload()
   }
 </script>
