@@ -10,9 +10,9 @@ $t_sql = "SELECT COUNT(1)
     ON cad.`sid`= md.`sid`
     JOIN `address_data` ad
     ON cad.`sid`= ad.`sid`
-    JOIN `city_data` cd
+    LEFT JOIN `city_data` cd
     ON cd.`sid`=ad.`city_sid`
-    JOIN `area_data` ard
+    LEFT JOIN `area_data` ard
     ON ard.`sid`=ad.`area_sid`";
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
 
@@ -36,9 +36,9 @@ if ($totalRows) {
     ON cad.`sid`= md.`sid`
     JOIN `address_data` ad
     ON cad.`sid`= ad.`sid`
-    JOIN `city_data` cd
+    LEFT JOIN `city_data` cd
     ON cd.`sid`=ad.`city_sid`
-    JOIN `area_data` ard
+    LEFT JOIN `area_data` ard
     ON ard.`sid`=ad.`area_sid`
     ORDER BY cad.`sid` DESC LIMIT %s,%s",
     ($page - 1) * $perPage,

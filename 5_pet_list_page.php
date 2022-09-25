@@ -24,7 +24,7 @@ if ($totalRows) {
     "SELECT pd.*,md.`name`
     FROM `pet_data` pd
     JOIN `members_data` md
-    ON md.`sid`=pd.`member_sid`
+    ON pd.`member_sid`=md.`sid`
     ORDER BY `pet_number` DESC LIMIT %s,%s",
     ($page - 1) * $perPage,
     $perPage

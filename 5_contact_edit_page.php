@@ -20,12 +20,13 @@ $sql = "SELECT cad.*,md.`sid`,md.`name`,ad.`address_detail`,cd.`sid` city_sid,ar
   ON cad.`sid`= md.`sid`
   JOIN `address_data` ad
   ON cad.`sid`= ad.`sid`
-  JOIN `city_data` cd
+  LEFT JOIN `city_data` cd
   ON cd.`sid`=ad.`city_sid`
-  JOIN `area_data` ard
+  LEFT JOIN `area_data` ard
   ON ard.`sid`=ad.`area_sid` 
   WHERE cad.`sid`=$sid";
 $r = $pdo->query($sql)->fetch();
+
 if (empty($r)) {
   header('Location: 5_member_list_page.php');
   exit;
@@ -39,7 +40,7 @@ if (empty($r)) {
   <div class="row">
     <div class="col-lg-6">
       <div class="card-body">
-        <h5 class="card-title">新增資料</h5>
+        <h5 class="card-title">編輯聯絡資料</h5>
         <form name="form1" onsubmit="checkForm(); return false;">
           <input type="hidden" class="form-control" id="sid" name="sid" value="<?= $r['sid'] ?>">
           <div class="mb-3">

@@ -31,7 +31,7 @@ if (empty($r)) {
   <div class="row">
     <div class="col-lg-6">
       <div class="card-body">
-        <h5 class="card-title">編輯資料</h5>
+        <h5 class="card-title">編輯基本資料</h5>
         <form name="form1" onsubmit="checkForm(); return false;">
           <input type="hidden" name="sid" value="<?= $r['sid'] ?>">
           <div class="mb-3">
@@ -67,7 +67,6 @@ if (empty($r)) {
             <input type="hidden" name="photo" value="<?= $r['member_photo'] ?>">
             <input type="file" class="form-control" name="single" id="imgg" accept="image/png,image/jpeg">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>

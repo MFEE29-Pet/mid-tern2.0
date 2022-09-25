@@ -44,12 +44,12 @@ if (!move_uploaded_file(
   exit;
 }
 
-if (empty($_POST['name'])) {
-  $output['error'] = '參數不足';
-  $output['code'] = 400;
-  echo json_encode($output, JSON_UNESCAPED_UNICODE);
-  exit;
-};
+// if (empty($_POST['name'])) {
+//   $output['error'] = '參數不足';
+//   $output['code'] = 400;
+//   echo json_encode($output, JSON_UNESCAPED_UNICODE);
+//   exit;
+// };
 
 $birthday = null;
 if (strtotime($_POST['birthday']) !== false) {
@@ -82,6 +82,25 @@ $sqltwo =
 
 $stmttwo = $pdo->prepare($sqltwo);
 
+$sql4 =
+  "INSERT INTO `register_award_data`(
+  `register_award`,
+  `is_used`,
+  `create_at`) VALUES (
+  1,
+  0,
+  NOW()
+  )";
+
+$stmt4 = $pdo->prepare($sql4);
+
+$sql5 =
+  "INSERT INTO `birth_award_data`(
+  `create_at`) VALUES (
+  NOW()
+  )";
+  
+$stmt5 = $pdo->prepare($sql5);
 
 try {
   $stmt->execute([
@@ -117,6 +136,23 @@ try {
 } catch (PDOException $ex) {
   $output['error'] = $ex->getMessage();
 }
+
+try {
+  $stmt4->execute([
+
+  ]);
+} catch (PDOException $ex) {
+  $output['error'] = $ex->getMessage();
+}
+
+try {
+  $stmt5->execute([
+
+  ]);
+} catch (PDOException $ex) {
+  $output['error'] = $ex->getMessage();
+}
+
 
 
 if ($stmt->rowCount() && $stmtone->rowCount() && $stmttwo->rowCount()) {
