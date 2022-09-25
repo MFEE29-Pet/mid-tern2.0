@@ -44,6 +44,12 @@ if (empty($_FILES['single']['name'])) {
 $output['filename'] = $filename;
 
 
+$birthday = null;
+if (strtotime($_POST['birthday']) !== false) {
+  $birthday = $_POST['birthday'];
+};
+
+
 
 if (empty($_POST['name'])) {
   $output['error'] = '參數不足';
@@ -94,7 +100,7 @@ try {
 
 try {
   $stmt1->execute([
-    $_POST['birthday'],
+    $birthday,
     $_POST['email'],
     $_POST['mobile'],
     $_POST['sid']
