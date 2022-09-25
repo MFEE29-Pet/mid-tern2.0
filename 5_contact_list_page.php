@@ -53,8 +53,8 @@ if ($totalRows) {
 <?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
   <div class="row">
-    <form class="d-flex" name="form1" onsubmit="searchForm();return false;">
-      <select class="form-select" aria-label="Default select example" name="row">
+    <form class="d-flex" name="form1" onsubmit="searchForm();return false;" >
+      <select class="form-select" aria-label="Default select example" name="row" id="row">
         <option selected>選擇搜尋欄位</option>
         <option value="member_sid">會員編號</option>
         <option value="name">會員名字</option>
@@ -65,7 +65,7 @@ if ($totalRows) {
         <option value="area">區域</option>
         <option value="address_detail">詳細地址</option>
       </select>
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search" onkeyup="getSuggest();return false;">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
     <table class="table table-striped">
@@ -164,6 +164,25 @@ if ($totalRows) {
                 </tr>`;
         }).join('')
 
+      })
+  };
+
+  function getSuggest() {
+    const sel = document.querySelector('#row').value
+    const suggest = document.querySelector('#search').value
+
+    const fd = new URLSearchParams({sid:sel,suggest:suggest});
+
+    fetch(`5_get_suggest_api.php`, {
+        method: 'POST',
+        body:fd,
+        headers:{
+          'Content-Type':'application/x-www-form-urlencoded;charset=utf-8'
+        }
+      })
+      .then(r => r.json())
+      .then(obj => {
+        console.log(obj)
       })
   }
 </script>
