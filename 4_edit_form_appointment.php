@@ -23,7 +23,7 @@ if(empty($r)){
 
 ?>
 <?php require __DIR__ . '/parts/index_header.php'; ?>
-<?php include __DIR__ . '/parts/index_navbar.php'; ?>
+<?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
