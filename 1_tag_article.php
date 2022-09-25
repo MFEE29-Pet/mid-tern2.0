@@ -25,7 +25,7 @@ $ta = $pdo->query($t_sql)->fetchAll();
 ?>
 <?php include __DIR__ . '/parts/index_header.php'; ?>
 <?php include __DIR__ . '/parts/index_navber.php'; ?>
-<?= $ta[0]['tag_name'] ?>
+<h6 style="text-align:center;"><?= $ta[0]['tag_name'] ?></h6>
 
 <div class="container">
     <a class="btn btn-primary" href="1_basepage.php">返回文章列表</a>

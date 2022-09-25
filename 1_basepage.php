@@ -49,7 +49,7 @@ $tag = $pdo->query($ta_sql)->fetchAll();
 ?>
 <?php include __DIR__ . '/parts/index_header.php'; ?>
 <?php include __DIR__ . '/parts/index_navber.php'; ?>
-論壇
+
 
 <div class="container">
     <a class="nav-link disabled" href="#">目前使用者:
