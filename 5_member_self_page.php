@@ -184,7 +184,7 @@ $areas = $pdo->query($sqlar)->fetchAll();
 
         if (obj.success) {
           alert("修改完成");
-          location.href = "5_member_list_page.php"
+          location.href = "5_index_page.php"
         } else {
           console.log(obj);
           // alert("新增失敗");
