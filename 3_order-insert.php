@@ -21,11 +21,10 @@ $rowslo = $pdo->query($sql2)->fetchAll();
                 <div class="card-body">
                     <h5 class="card-title">新增訂單</h5>
                     <form name="form1" onsubmit="checkForm(); return false;" novalidate>
-                        <!-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="membership-sid" class="form-label">會員編號</label>
-                            <input type="text" class="form-control" id="membership-sid" name="	membership-sid" required value="<? ##= htmlentities($r['membership-sid']) 
-                                                                                                                                    ?>">
-                        </div> -->
+                            <input type="text" class="form-control" id="membership-sid" name="membership-sid" value="">
+                        </div>
 
                         <div class="mb-3">
                             <label for="check_in" class="form-label">入住日期</label>
@@ -57,10 +56,7 @@ $rowslo = $pdo->query($sql2)->fetchAll();
                             <label for="housing_price" class="form-label">價格</label>
                             <input type="text" class="form-control" id="housing_price" name="housing_price">
                             </input>
-                            <!-- <select class="form-control" id="price_sid" name="background_management_sid" cols="50" rows="3">
-                                <option value="<?= $r['price'] ?>"></option>
-                                <option></option>
-                            </select> -->
+                            
                         </div>
 
                         <div class="mb-3">
@@ -78,13 +74,7 @@ $rowslo = $pdo->query($sql2)->fetchAll();
 
 
 
-                        <div id="msgContainer">
-                            <!--
-                            <div class="alert alert-danger" role="alert">
-                                A simple danger alert—check it out!
-                            </div>
--->
-                        </div>
+                  </div>
                 </div>
 
                 <button class="btn btn-primary">新增訂單</button>
@@ -121,23 +111,7 @@ $rowslo = $pdo->query($sql2)->fetchAll();
         dayTotal.value = days
     }
 
-    // //total_price
-    // let check_out = document.querySelector('#price_sid');
-    // let dayTotal = document.querySelector('#housing_days');
-    // price_sid.addEventListener('change', () => {
-    //     let a = price_sid.value;
-    //     price(a, price_sidt.value);
-    // });
-
-    // housing_days.addEventListener('change', () => {
-    //             let b = housing_days.value
-    //             day(housing_days, b);
-
-    //             function day(a, b) {
-    //                 let price = b.join('') * a.join('');
-    //                 priceTotal.value = price
-    //             }
-
+    
 
     const price = <?= json_encode($rowslo, JSON_UNESCAPED_UNICODE); ?>
 
@@ -182,38 +156,7 @@ $rowslo = $pdo->query($sql2)->fetchAll();
     }
 
     function checkForm() {
-        // TODO: 檢查欄位資料格式是不是符合
-
-        // let isPass = true; // 預設表單的資料是沒問題的
-        // const name = document.form1.name.value;
-        // const email = document.form1.email.value;
-
-        // if (name.length < 2) {
-        //     genAlert('請填寫正確的姓名!');
-        //     isPass = false;
-        // }
-        // if (!email) {
-        //     genAlert('請填寫正確的 email!');
-        //     isPass = false;
-        // }
-
-        // if (isPass) {
-        //     // 送出表單資料
-
-        //     $.post(
-        //         '3_order-insert-api.php',
-        //         $(document.form1).serialize(),
-        //         function(data) {
-        //             console.log(data);
-        //             if (data.success) {
-        //                 genAlert('新增完成', 'success');
-        //             } else {
-        //                 genAlert(data.error);
-        //             }
-
-
-        //         }, 'json');
-        // }
+      
         const fd = new FormData(document.form1);
 
         fetch('3_order-insert-api.php', {
