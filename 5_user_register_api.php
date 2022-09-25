@@ -7,6 +7,7 @@ $output = [
   'postData' => $_POST, //除錯用的
 ];
 
+
 $sql1 =
   "INSERT INTO `members_data`(
   `username`, `password`,`level`, `create_at`) VALUES (
@@ -30,6 +31,26 @@ $sql3 =
   )";
 
 $stmt3 = $pdo->prepare($sql3);
+
+$sql4 =
+  "INSERT INTO `register_award_data`(
+  `register_award`,
+  `is_used`,
+  `create_at`) VALUES (
+  1,
+  0,
+  NOW()
+  )";
+
+$stmt4 = $pdo->prepare($sql4);
+
+$sql5 =
+  "INSERT INTO `birth_award_data`(
+  `create_at`) VALUES (
+  NOW()
+  )";
+
+$stmt5 = $pdo->prepare($sql5);
 
 
 try {
@@ -58,8 +79,25 @@ try {
   $output['error'] = $ex->getMessage();
 }
 
+try {
+  $stmt4->execute([
 
-if ($stmt1->rowCount() && $stmt2->rowCount()) {
+  ]);
+} catch (PDOException $ex) {
+  $output['error'] = $ex->getMessage();
+}
+
+try {
+  $stmt5->execute([
+
+  ]);
+} catch (PDOException $ex) {
+  $output['error'] = $ex->getMessage();
+}
+
+
+
+if ($stmt1->rowCount() && $stmt2->rowCount() && $stmt3->rowCount() && $stmt4->rowCount() && $stmt5->rowCount()) {
   $output['success'] = true;
 } else {
   if (empty($output['error']))
