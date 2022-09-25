@@ -184,7 +184,7 @@ if ($totalRows) {
     });
     let docFrag = document.createDocumentFragment();
 
-    while (re.hasChildNodes()) {
+    while (re.hasChildNodes() || suggest ==="") {
       re.removeChild(re.lastChild);
     }
 
