@@ -4,7 +4,10 @@ $pageName = 'listpage';
 $perPage = 5;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-$t_sql = "SELECT COUNT(1) FROM members_data";
+$t_sql = "SELECT COUNT(1) 
+    FROM members_data md
+    JOIN `level_data` ld
+    ON md.`level`=ld.`sid`";
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
 
 $totalPages = ceil($totalRows / $perPage);
