@@ -86,6 +86,7 @@ $lastArticle = $stmt->fetch(PDO::FETCH_NUM)[0];
                         <a href="#" class="btn btn-info m-1"><?= $t['tag_name'] ?></a>
                     <?php endforeach; ?>
                     <br>
+                    <!-- 上下一篇連結頁面仍需修正 -->
                     <a href="?page=<?= $page - 1 ?>" class="btn btn-primary <?= $r['article_sid'] == $firstArticle ? 'disabled' : '' ?>">上一篇</a>
                     <a href="?page=<?= $page + 1 ?>" class="btn btn-primary <?= $r['article_sid'] == $lastArticle ? 'disabled' : '' ?>">下一篇</a>
                 </div>
