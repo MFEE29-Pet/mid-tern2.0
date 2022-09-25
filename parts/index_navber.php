@@ -124,7 +124,7 @@ if (!isset($_SESSION)) {
             <div class="sub-menu">
 
                 <?php if (!empty($_SESSION['user1'])) : ?>
-                  <a href="5_member_list_page.php" class="sub-item">會員個人資料管理</a>
+                  <a href="5_member_self_page.php" class="sub-item">會員個人資料管理</a>
                 <?php endif; ?>
 
                 <?php if (!empty($_SESSION['admin'])) : ?>
