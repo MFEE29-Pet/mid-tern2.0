@@ -1,4 +1,4 @@
-<?php require __DIR__ . '/parts/__connect_db.php'; ?>
+<?php require __DIR__ . '/parts/connect_db.php'; ?>
 <?php include __DIR__ . '/parts/index_header.php'; ?>
 <?php include __DIR__ . '/parts/index_navber.php'; ?>
 <?php
@@ -26,7 +26,7 @@ $rowslo = $pdo->query($sql2)->fetchAll();
                 <div class="card-body">
                     <h5 class="card-title">修改訂單</h5>
                     <form name="form1" onsubmit="checkForm(); return false;" novalidate>
-                        <input type="text" name="sid" value="<?= $r['sid'] ?>">
+                        <input type="hidden" name="sid" value="<?= $r['sid'] ?>">
                         <div class="mb-3">
                             <label for="membership-sid" class="form-label">會員編號</label>
                             <input type="text" class="form-control" id="membership-sid" name="membership-sid" required value="<?= htmlentities($r['membership-sid']) ?>">

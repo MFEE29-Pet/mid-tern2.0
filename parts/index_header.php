@@ -131,10 +131,6 @@
       width: calc(100% - 400px);
     }
 
-    .text-end {
-      width: 200px;
-    }
-
     header {
       background: #6e98e2;
       width: 100%;
@@ -194,18 +190,19 @@
       color: #fff;
     }
 
-    .table-box {
-      width: 100%;
-      padding: 0px 100px 100px 100px;
-    }
+
 
     .table-con {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 50px;
       width: calc(100% - 290px);
       overflow-y: scroll;
+    }
+    .table-box{
+      height: 100%;
+      width: 100%;
+      padding-top: 50px;
     }
     .table-con::-webkit-scrollbar{
       display: none;

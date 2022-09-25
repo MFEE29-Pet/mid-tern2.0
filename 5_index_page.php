@@ -4,11 +4,12 @@ $pageName = 'indexpage';
 <?php include __DIR__ . '/parts/index_header.php'; ?>
 <style>
   .index_bg {
-    background: url('./images/karsten-winegeart-5PVXkqt2s9k-unsplash_0.jpg');
+    background: url('./images/karsten.jpg');
     width: 100%;
     height: 100%;
-    background-size: 105%;
-    background-position: 8% 60%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 80%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,7 +31,7 @@ $pageName = 'indexpage';
   h1 {
     font-size: 60px;
     line-height: 80px;
-    color: #fff;
+    color: #000;
     font-family: 'Permanent Marker', cursive;
   }
 

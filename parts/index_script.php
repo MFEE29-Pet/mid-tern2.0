@@ -1,4 +1,5 @@
 </div>
+</div>
 </section>
   </main>
   <script type="text/javascript">
@@ -24,6 +25,12 @@
     });
     function outAdmin(){
       location.href='5_logout_api.php'
+    }
+    function loginUser(){
+      location.href='5_user_login_page.php'
+    }
+    function loginAdmin(){
+      location.href='5_login_page.php'
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"

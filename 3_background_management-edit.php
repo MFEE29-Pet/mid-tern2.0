@@ -1,4 +1,4 @@
-<?php require __DIR__ . '/parts/__connect_db.php'; ?>
+<?php require __DIR__ . '/parts/connect_db.php'; ?>
 <?php include __DIR__ . '/parts/index_header.php'; ?>
 <?php include __DIR__ . '/parts/index_navber.php'; ?>
 <?php
@@ -27,7 +27,6 @@ $r = $pdo->query($sql)->fetch();
 
                 <div class="card-body">
                     <h5 class="card-title">修改房型內容</h5>
-                    
                     <form name="form1" onsubmit="checkForm(); return false;" novalidate>
                         <input type="hidden" id="sid" name="sid" value="<?= $r['sid'] ?>">
                         <div class="mb-3">
@@ -99,99 +98,6 @@ $r = $pdo->query($sql)->fetch();
 </div>
 <?php include __DIR__ . '/parts/index_script.php'; ?>
 <script>
-    //housing_days
-    // let check_in = document.querySelector('#check_in');
-    // let check_out = document.querySelector('#check_out');
-    // let dayTotal = document.querySelector('#housing_days');
-    // let housing_price = document.querySelector('#housing_price');
-    // let total_price = document.querySelector('#total_price');
-
-    // check_in.addEventListener('change', () => {
-    //     let a = check_in.value;
-    //     //計算日期
-    //     // day(a, check_out.value);
-    // });
-    // check_out.addEventListener('change', () => {
-    //     let b = check_out.value
-    //     //計算日期
-    //     day(check_in.value, b);
-    //     totalPrice();
-    // });
-
-    // function day(a, b) {
-    //     let days = b.split('-').join('') - a.split('-').join('');
-    //     dayTotal.value = days
-    // }
-
-    // const price = ##php json_encode($rowslo, JSON_UNESCAPED_UNICODE);
-
-    // const pri_sid = document.querySelector('#price_sid');
-
-    // const msgc = $('#msgContainer');
-
-    // function genAlert(msg, type = 'danger') {
-    //     const a = $(`
-    //     <div class="alert alert-${type}" role="alert">
-    //         ${msg}
-    //     </div>
-    //     `);
-
-    //     msgc.append(a);
-    //     setTimeout(() => {
-    //         a.fadeOut(400, function() {
-    //             a.remove();
-    //         });
-    //     }, 2000);
-    // }
-
-    //根據帳型產生價格
-    //計算總價
-    // function changePrice(event) {
-    //     const room_sid = +event.target.value;
-    //     // console.log(room_sid);
-    //     // console.log(price);
-    //     //讀出帳型的價格
-    //     const myPrice = price.filter(el => +el.sid === room_sid);
-
-    //     housing_price.value = myPrice[0].price;
-    //     // pri_sid.innerHTML = myPrice.map(el => {
-    //     //     return `<option value="${el.sid}">${el.price}</option>`
-    //     // }).join();
-    //     totalPrice();
-
-    // }
-
-    // function totalPrice() {
-    //    total_price.value = housing_price.value * dayTotal.value;
-
-    // }
-
-
-    <?php ## $page = isset($_GET['page']) ? intval($_GET['page']) : 1; 
-    ?>
-
-    // function checkForm() {
-    //     //document.form1.email.value
-    //     const fd = new FormData(document.form1);
-    //     for (let k of fd.keys()) {
-    //         console.log(`${k};${fd.get(k)}`);
-    //     }
-    //     // TODO: 檢查欄位資料格式是不是符合
-    //     fetch('3_order-edit-api.php', {
-    //         method: 'POST',
-    //         body: fd
-    //     }).then(r => r.json()).then(obj => {
-    //         console.log(obj);
-    //         if (!obj.success) {
-    //             alert(obj.error);
-    //         } else {
-    //             alert('修改成功')
-    //             location.href = '3_camping_order.php?page=<? ##$i 
-                                                                ?>';
-
-
-    //         }
-    //     })
 
     function checkForm() {
         const fd = new FormData(document.form1);

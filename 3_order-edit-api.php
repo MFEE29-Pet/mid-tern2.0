@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/parts/__connect_db.php';
+require __DIR__ . '/parts/connect_db.php';
 
 $output = [
     'success' => false, // 是否修改成功

@@ -3,7 +3,7 @@
 // echo $_SERVER['HTTP_REFERER'];  // 人從哪裡來
 // exit;
 
-require __DIR__ . '/parts/__connect_db.php';
+require __DIR__ . '/parts/connect_db.php';
 
 $sid = isset($_GET['sid']) ? intval($_GET['sid']) : 0;
 
