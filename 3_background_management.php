@@ -91,7 +91,7 @@ exit;
                             <td><?= $r['public_bathroom'] ?></td>
                             <td><?= $r['include'] ?></td>
                             <td>
-                                <a href="3_order-edit.php?sid=<?= $r['sid'] ?>">
+                                <a href="3_background_management-edit.php?sid=<?= $r['sid'] ?>">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                             </td>
@@ -110,8 +110,8 @@ exit;
 <script>
     function remove_it(sid) {
         if (confirm(`是否要刪除編號為 ${sid} 的資料?`)) {
-            location.href = `3_camping_order.php?sid=${sid}`;
+            location.href = `3_background_managementr_delete.php?sid=${sid}`;
         }
     }
 </script>
-<?php include __DIR__ . '/parts/html-foot.php'; ?>
+<?php include __DIR__ . '/parts/index_footer.php'; ?>
