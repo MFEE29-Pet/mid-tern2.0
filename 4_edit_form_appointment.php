@@ -34,7 +34,7 @@ if(empty($r)){
                     <form name="form1" onsubmit="checkForm(); return false;" novalidate>
                         <input type="hidden" name="sid" value="<?= $r['sid'] ?>">
                         <div class="mb-3">
-                            <label for="date" class="form-label">預約日期</label>
+                            <label for="date" class="form-label">掛號日期</label>
                             <input type="date" class="form-control" id="date" name="date" required
                                 value="<?= htmlentities($r['date']) ?>">
                         </div>

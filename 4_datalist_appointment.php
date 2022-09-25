@@ -108,14 +108,14 @@ $rows = $pdo->query($sql)->fetchAll();
                         <tr>
                             <th scope="col"><i class="fa-solid fa-trash-can"></i></th>
                             <th scope="col">編號</th>
-                            <th scope="col">預約日期</th>
+                            <th scope="col">掛號日期</th>
                             <!-- <th scope="col">星期</th> -->
                             <th scope="col">診所名稱</th>
                             <th scope="col">預約時段</th>
                             <th scope="col">不適症狀</th>
                             <th scope="col">看診序號</th>
-                            <th scope="col">create_at</th>
-                            <th scope="col">會員名稱</th>
+                            <th scope="col">預約時間</th>
+                            <th scope="col">會員編號</th>
                             <th scope="col">寵物晶片</th>
 
                             <th scope="col"><i class="fa-solid fa-pen-to-square"></i></th>
