@@ -41,6 +41,9 @@ if ($totalPages) {
 $ca_sql = "SELECT * FROM a_categories";
 $cates = $pdo->query($ca_sql)->fetchAll();
 
+$ta_sql = "SELECT * FROM `tag`";
+$tag = $pdo->query($ta_sql)->fetchAll();
+
 
 // echo json_encode($article, JSON_UNESCAPED_UNICODE);exit;
 ?>
@@ -57,6 +60,8 @@ $cates = $pdo->query($ca_sql)->fetchAll();
     <a class="link d-block" href="1_user_logout_api.php" style="width:40px;">登出</a>
 <?php endif; ?>
 </div>
+
+
 
 <!--  頁數選擇 -->
 <div class="container">
@@ -103,34 +108,51 @@ $cates = $pdo->query($ca_sql)->fetchAll();
     <div class="container">
         <div class="row">
             <div class="col">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination d-flex justify-content-around">
-                        <li><a href="?">所有文章</a></li>
-                        <?php foreach ($cates as $c) : ?>
-                            <li><a href="?cate=<?= $c['sid'] ?>"><?= $c['category'] ?></a></li>
+                <ul class="nav d-flex justify-content-around" style="width:80%;">
+                    <li class="nav-item">
+                        <a class="nav-link <?= empty($_GET['cate']) ? 'active' : '' ?>" style="color:#0d6efd;" href="?">所有文章</a>
+                    </li>
+                    <?php foreach ($cates as $c) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link <?= $_GET['cate'] == $c['sid'] ? 'active' : '' ?>" style="color:#0d6efd;" href="?cate=<?= $c['sid'] ?>"><?= $c['category'] ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+
+        <!-- tag分類 -->
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <ul class="nav d-flex justify-content-around" style="width:80%;">
+                        <li class="btn disabled">tags :</li>
+                        <?php foreach ($tag as $t) : ?>
+                            <li class="btn">
+                                <a class="btn btn-light" href="1_tag_article.php?tag=<?= $t['sid'] ?>"><?= $t['tag_name'] ?></a>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
+                </div>
             </div>
-        </div>
 
 
-
-        <!-- 文章列表 -->
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <?php foreach ($article as $a) : ?>
-                    <div class="card" style="width: 90%; margin:10px;">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $a['title'] ?></h5>
-                            <h6>作者:<?= $a['username'] ?></h6>
-                            <a class="btn btn-primary" href="1_forum-list.php?page=<?= $a['article_sid']  ?>">詳細內容</a>
+            <!-- 文章列表 -->
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <?php foreach ($article as $a) : ?>
+                        <div class="card" style="width: 90%; margin:10px;">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $a['title'] ?></h5>
+                                <h6>作者:<?= $a['username'] ?></h6>
+                                <a class="btn btn-primary" href="1_forum-list.php?page=<?= $a['article_sid']  ?>">詳細內容</a>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <?php include __DIR__ . '/parts/index_script.php'; ?>
-    <?php include __DIR__ . '/parts/index_footer.php'; ?>
+        <?php include __DIR__ . '/parts/index_script.php'; ?>
+        <?php include __DIR__ . '/parts/index_footer.php'; ?>
