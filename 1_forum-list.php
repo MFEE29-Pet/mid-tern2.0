@@ -1,26 +1,26 @@
 <?php require __DIR__ . '/parts/connect_db.php';
 
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+// $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $sid = isset($_GET['sid']) ? intval($_GET['sid']) : 1;
 $cate = isset($_GET['cate']) ? intval($_GET['cate']) : 0;
-if (empty($page)) {
-    header('Location: 1_basepage.php');
-    exit;
-}
+// if (empty($page)) {
+//     header('Location: 1_basepage.php');
+//     exit;
+// }
 // if (empty($sid)) {
 //     header('Location: 1_basepage.php');
 //     exit;
 // }
 // $page = 0;
 // $display = 1;
-$offset = $page - 1;
+// $offset = $page - 1;
 // $sql_p = "SELECT COUNT(1) FROM `article`";
 // $pages = $pdo->query($sql_p)->fetch(PDO::FETCH_NUM)[0];
 
 $sql = "SELECT a.* , m.* FROM `article` a
 JOIN `members_data` m 
 ON a.`m_sid` = m.`sid`
-LIMIT $offset , 1";
+";
 $r = $pdo->query($sql)->fetch();
 if (empty($r)) {
     header('Location: 1_basepage.php');
@@ -63,6 +63,7 @@ $lastArticle = $stmt->fetch(PDO::FETCH_NUM)[0];
     <a class="link d-block" href="1_user_logout_api.php" style="width:40px;">登出</a>
 <?php endif; ?>
 
+<a id="back" class="btn btn-primary m-3">返回</a>
 <a href="1_insert-form.php" class="btn btn-primary m-3">發表文章</a>
 <?php if ((!empty($_SESSION['user1']) && $_SESSION['user1']['sid'] == $r['m_sid']) || (!empty($_SESSION['admin']))) { ?>
     <a href="1_edit-a-form.php?sid=<?= $r['article_sid'] ?>" class="btn btn-primary m-3">編輯</a>
@@ -87,8 +88,12 @@ $lastArticle = $stmt->fetch(PDO::FETCH_NUM)[0];
                     <?php endforeach; ?>
                     <br>
                     <!-- 上下一篇連結頁面仍需修正 -->
-                    <a href="?page=<?= $page - 1 ?>" class="btn btn-primary <?= $r['article_sid'] == $firstArticle ? 'disabled' : '' ?>">上一篇</a>
-                    <a href="?page=<?= $page + 1 ?>" class="btn btn-primary <?= $r['article_sid'] == $lastArticle ? 'disabled' : '' ?>">下一篇</a>
+                    <!-- <a href="?page=<? ##= $page - 1 
+                                        ?>" class="btn btn-primary <? ##= $r['article_sid'] == $firstArticle ? 'disabled' : '' 
+                                                                    ?>">上一篇</a>
+                    <a href="?page=<? ##= $page + 1 
+                                    ?>" class="btn btn-primary <? ##= $r['article_sid'] == $lastArticle ? 'disabled' : '' 
+                                                                ?>">下一篇</a> -->
                 </div>
             </div>
         </div>
@@ -141,6 +146,8 @@ $lastArticle = $stmt->fetch(PDO::FETCH_NUM)[0];
 </div>
 <?php include __DIR__ . '/parts/index_script.php'; ?>
 <script>
+    document.querySelector('#back').addEventListener('click', () => history.back());
+
     function checkForm() {
         const fd = new FormData(document.form1);
 

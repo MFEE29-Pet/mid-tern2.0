@@ -6,7 +6,7 @@ if (empty($_GET['tag'])) {
     header('location: 1_basepage.php');
 }
 
-$t_sql = "SELECT a.`title`, t.* 
+$t_sql = "SELECT a.`title`,a.`article_sid`, t.*  
 FROM `tag_article` ta
 JOIN `article` a
 ON a.`article_sid` = ta.`a_sid`
@@ -36,9 +36,12 @@ $ta = $pdo->query($t_sql)->fetchAll();
 <div class="container">
     <div class="row d-flex justify-content-center">
         <?php foreach ($ta as $t) : ?>
-            <div class="card" style="width: 90%; margin:10px;">
-                <div class="btn btn-light card-body">
-                    <h5 class="card-title"><?= $t['title'] ?></h5>
+            <div class="card" style="width: 60%; margin:10px;">
+                <h5 class="card-title"><?= $t['title'] ?></h5>
+                <div class="container">
+                    <div class="row d-flex justify-content-end">
+                        <a class="btn btn-primary" style="width:100px; margin:20px 0;" href="1_forum-list.php?sid=<?= $t['article_sid']  ?>">詳細內容</a>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
