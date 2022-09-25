@@ -66,7 +66,7 @@ $cates = $pdo->query($ca_sql)->fetchAll();
                 <ul class="pagination">
                     <a href=""></a>
                     <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
-                        <a class="page-link" href=?page=<?= 1 ?>>
+                        <a class="page-link" href="?page=<?= 1 ?>">
                             <i class="fas fa-angles-left"></i>
                         </a>
                     </li>
