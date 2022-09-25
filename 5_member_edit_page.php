@@ -49,24 +49,25 @@ if (empty($r)) {
           <div class="mb-3">
             <label for="gender" class="form-label">性別</label><br>
             <select name="gender" id="gender">
-              <option value="男" <?= $r['gender']==='男' ? 'selected' : ''?>>男</option>
-              <option value="女" <?= $r['gender']==='女' ? 'selected' : ''?>>女</option>
+              <option value="男" <?= $r['gender'] === '男' ? 'selected' : '' ?>>男</option>
+              <option value="女" <?= $r['gender'] === '女' ? 'selected' : '' ?>>女</option>
             </select>
           </div>
           <div class="mb-3">
             <label for="level" class="form-label">會員等級</label><br>
             <select name="level" id="level">
               <?php foreach ($rowslv as $lv) : ?>
-                <option value="<?= $r['level'] ?>" <?= $r['level']===$lv['sid'] ? 'selected' : ''?>><?= $lv['level_name'] ?></option>
+                <option value="<?= $r['level'] ?>" <?= $r['level'] === $lv['sid'] ? 'selected' : '' ?>><?= $lv['level_name'] ?></option>
               <?php endforeach ?>
             </select>
           </div>
-          <div class="mb-6">
-            <label for="member_photo" class="form-label">上傳大頭照</label><br>
-            <img id="myimg" src="./store/<?=$r['member_photo']?>" alt="" style="width:200px;"><br>
+          <label for="member_photo" class="form-label">上傳大頭照</label><br>
+          <img id="myimg" src="./store/<?= $r['member_photo'] ?>" alt="" style="width:200px">
+          <div class="input-group mb-6">
             <input type="hidden" name="photo" value="<?= $r['member_photo'] ?>">
-            <input type="file" id="imgg" name="single" accept="image/png,image/jpeg">
+            <input type="file" class="form-control" name="single" id="imgg" accept="image/png,image/jpeg">
           </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>

@@ -75,10 +75,16 @@ $areas = $pdo->query($sqlar)->fetchAll();
             <label for="address_detail" class="form-label">詳細地址</label><br>
             <input type="text" class="form-control" id="address_detail" name="address_detail"></input>
           </div>
-          <div class="mb-6">
+          <!-- <div class="mb-6">
             <label for="member_photo" class="form-label">上傳大頭照</label><br>
-            <img id="myimg" src="" alt="" style="width:200px;"><br>
+
             <input type="file" id="imgg" name="single" accept="image/png,image/jpeg">
+          </div> -->
+          <label for="member_photo" class="form-label">上傳大頭照</label><br>
+          <img id="myimg" src="" alt="" style="width:200px">
+          <div class="input-group mb-6">
+
+            <input type="file" class="form-control" name="single" id="imgg" accept="image/png,image/jpeg">
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>

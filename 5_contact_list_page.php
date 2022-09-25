@@ -4,7 +4,16 @@ $pageName = 'listpage';
 $perPage = 5;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-$t_sql = "SELECT COUNT(1) FROM contact_data";
+$t_sql = "SELECT COUNT(1) 
+    FROM contact_data cad
+    JOIN `members_data` md
+    ON cad.`sid`= md.`sid`
+    JOIN `address_data` ad
+    ON cad.`sid`= ad.`sid`
+    JOIN `city_data` cd
+    ON cd.`sid`=ad.`city_sid`
+    JOIN `area_data` ard
+    ON ard.`sid`=ad.`area_sid`";
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
 
 $totalPages = ceil($totalRows / $perPage);
@@ -44,11 +53,26 @@ if ($totalRows) {
 <?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
   <div class="row">
+    <form class="d-flex" name="form1" onsubmit="searchForm();return false;" >
+      <select class="form-select" aria-label="Default select example" name="row" id="row">
+        <option selected>選擇搜尋欄位</option>
+        <option value="member_sid">會員編號</option>
+        <option value="name">會員名字</option>
+        <option value="mobile">手機</option>
+        <option value="birthday">生日</option>
+        <option value="email">Email</option>
+        <option value="city">縣市</option>
+        <option value="area">區域</option>
+        <option value="address_detail">詳細地址</option>
+      </select>
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search" onkeyup="getSuggest();return false;">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
     <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col">會員編號</th>
-          <th scope="col">姓名</th>
+          <th scope="col">會員名字</th>
           <th scope="col">生日</th>
           <th scope="col">Email</th>
           <th scope="col">手機</th>
@@ -60,7 +84,7 @@ if ($totalRows) {
           </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="table_change">
         <?php foreach ($rows as $r) : ?>
           <tr>
             <td><?= $r['sid'] ?></td>
@@ -99,6 +123,7 @@ if ($totalRows) {
         </li>
       </ul>
     </nav>
+
   </div>
 </div>
 <?php include __DIR__ . '/parts/index_script.php'; ?>
@@ -109,6 +134,56 @@ if ($totalRows) {
     if (confirm(`確定要刪除編號為${sid}的資料嗎?`)) {
       location.href = `5_contact_delete_api.php?sid=${sid}`
     }
+  }
+
+  function searchForm() {
+    const fd = new FormData(document.form1);
+
+    fetch('5_search_contact_api.php', {
+        method: 'POST',
+        body: fd
+      })
+      .then(r => r.json())
+      .then(obj => {
+        const table_change = document.querySelector('#table_change');
+        table_change.innerHTML = obj.map(el => {
+          return `<tr>
+                  <td>${el.sid}</td>
+                  <td>${el.name}</td>
+                  <td>${el.birthday}</td>
+                  <td>${el.email}</td>
+                  <td>${el.mobile}</td>
+                  <td>${el.city_name}</td>
+                  <td>${el.area_name}</td>
+                  <td>${el.address_detail}</td>
+                  <td>
+                    <a href="5_contact_edit_page.php?sid=${el.sid}">
+                      <i class="fa-regular fa-pen-to-square"></i>
+                    </a>
+                  </td>
+                </tr>`;
+        }).join('')
+
+      })
+  };
+
+  function getSuggest() {
+    const sel = document.querySelector('#row').value
+    const suggest = document.querySelector('#search').value
+
+    const fd = new URLSearchParams({sid:sel,suggest:suggest});
+
+    fetch(`5_get_suggest_api.php`, {
+        method: 'POST',
+        body:fd,
+        headers:{
+          'Content-Type':'application/x-www-form-urlencoded;charset=utf-8'
+        }
+      })
+      .then(r => r.json())
+      .then(obj => {
+        console.log(obj)
+      })
   }
 </script>
 <?php include __DIR__ . '/parts/index_footer.php'; ?>

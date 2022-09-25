@@ -1,0 +1,15 @@
+side navbar 修改
+empty($_SESSION)顯示會員登入(普通使用者)
+文章列表連結至1_basepage.php (已改)
+SESSION['user1'] 隱藏醫院管理、會員管理、  -- !empty(SESSION['admin']) 條件
+論壇管理更名為論壇
+
+
+
+上方navbar 修改
+SESSION['user1']一樣要顯示登出
+SESSION['user1']隱藏會員列表＆新增
+
+
+資料庫修正
+article資料表重建 （不然會出錯）

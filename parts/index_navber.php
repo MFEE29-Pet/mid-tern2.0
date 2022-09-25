@@ -25,20 +25,20 @@ if (!isset($_SESSION)) {
         </ul>
         <div class="text-end">
           <!-- <button type="button" class="btn btn-nickname"> -->
-            <?php if (!empty($_SESSION['admin'])) : ?>
-              <a class="btn btn-primary disable" href="#"><?= $_SESSION['admin']['nickname'] ?></a>
-            <?php else :?>
-              <a class="btn btn-primary" href="5_login_page.php"><?= "管理者登入" ?></a>
-            
-            <?php endif; ?>
+          <?php if (!empty($_SESSION['admin'])) : ?>
+            <a class="btn btn-primary disable" href="#"><?= $_SESSION['admin']['nickname'] ?></a>
+          <?php else : ?>
+            <a class="btn btn-primary" href="5_login_page.php"><?= "管理者登入" ?></a>
+
+          <?php endif; ?>
           <!-- </button> -->
-          
-            <?php if (!empty($_SESSION['admin'])) : ?>
-              <button type="button" class="btn btn-reg" onclick="outAdmin()" >管理者登出
-              </button>
-            
-            <?php endif; ?>
-          
+
+          <?php if (!empty($_SESSION['admin'])) : ?>
+            <button type="button" class="btn btn-reg" onclick="outAdmin()">管理者登出
+            </button>
+
+          <?php endif; ?>
+
         </div>
       </div>
     </header>
@@ -56,7 +56,7 @@ if (!isset($_SESSION)) {
               <i class="fas fa-angle-right dropdown"></i>
             </a>
             <div class="sub-menu">
-              <a href="1_forum-list.php" class="sub-item">文章列表</a>
+              <a href="1_basepage.php" class="sub-item">文章列表</a>
               <a href="1_insert-form.php" class="sub-item">新增文章</a>
             </div>
           </div>
@@ -86,12 +86,14 @@ if (!isset($_SESSION)) {
           <div class="item">
             <a class="sub-btn">
               <i class="fa-solid fa-hospital"></i>
-              Hospital
+              醫院管理
               <i class="fas fa-angle-right dropdown"></i>
             </a>
             <div class="sub-menu">
-              <a href="#" class="sub-item">Sub Item 01</a>
-              <a href="#" class="sub-item">Sub Item 02</a>
+              <a href="4_datalist_clinic.php" class="sub-item">醫院資訊管理</a>
+              <a href="4_datalist_appointment.php" class="sub-item">掛號預約管理</a>
+              <a href="4_insert_form_clinic.php" class="sub-item">新增資院資訊</a>
+              <a href="4_insert_form_appointment.php" class="sub-item">新增掛號預約</a>
             </div>
           </div>
           <div class="item">
