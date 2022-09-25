@@ -19,6 +19,7 @@ $pageName = 'cart'; // 頁面名稱
                             <th scope="col">
                                 <i class="fa-solid fa-trash-can"></i>
                             </th>
+                            <th scope="col">商品圖</th>
                             <th scope="col">商品名稱</th>
                             <th scope="col">價格</th>
                             <th scope="col">數量</th>
@@ -38,7 +39,9 @@ $pageName = 'cart'; // 頁面名稱
                                         <i class="fa-solid fa-trash-can"></i>
                                     </a>
                                 </td>
-                                
+                                <td>
+                                    <img width="45" height="50" src="../eason_goods/store/<?= $v['pic'] ?>" alt="<?= $v['product_name'] ?>">
+                                </td>
                                 <td>
                                     <?= $v['product_name'] ?>
                                 </td>
