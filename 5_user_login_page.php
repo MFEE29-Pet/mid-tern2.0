@@ -23,7 +23,8 @@ $pageName = 'user_register_page';
         <i class="fas fa-exclamation-circle"></i>
         <small>Error message</small>
       </div>
-      <button>Submit</button>
+      <button class="register" onclick="register()">前往註冊帳號</button>
+      <button class="submit">Submit</button>
     </form>
   </div>
   <?php include __DIR__ . '/parts/user_login_script.php'; ?>
@@ -42,9 +43,13 @@ $pageName = 'user_register_page';
             location.href = "5_index_page.php"
           } else {
             console.log(obj);
-            alert("登入失敗");
+
           }
         })
+    }
+
+    function register(){
+      location.href='5_user_register_page.php'
     }
   </script>
   <?php include __DIR__ . '/parts/user_login_footer.php'; ?>

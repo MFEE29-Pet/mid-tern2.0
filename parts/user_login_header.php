@@ -122,11 +122,25 @@
       visibility: visible;
     }
 
-    .form button {
+    .submit {
       background-color: #182747;
       border: 2px solid #182747;
       border-radius: 4px;
       color: #fff;
+      display: block;
+      font-family: inherit;
+      font-size: 16px;
+      padding: 10px;
+      margin-top: 20px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .register{
+      background-color: #777;
+      border: 2px solid #182747;
+      border-radius: 4px;
+      color: #000;
       display: block;
       font-family: inherit;
       font-size: 16px;
