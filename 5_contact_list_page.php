@@ -66,7 +66,8 @@ if ($totalRows) {
         <option value="address_detail">詳細地址</option>
       </select>
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search" onkeyup="getSuggest();return false;">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <button class="btn btn-outline-success me-1" type="submit">Search</button>
+      <button class="btn btn-outline-success" type="submit" onclick="back()">Back</button>
     </form>
     <table class="table table-striped">
       <thead>
@@ -104,7 +105,7 @@ if ($totalRows) {
         <?php endforeach; ?>
       </tbody>
     </table>
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example" id="page">
       <ul class="pagination">
         <li class="page-item <?= 1 == $page ? 'disabled' : '' ?>">
           <a class="page-link" href="?page=<?= $page - 1 ?>">
@@ -138,6 +139,8 @@ if ($totalRows) {
 
   function searchForm() {
     const fd = new FormData(document.form1);
+    const page = document.querySelector('#page');
+    page.style.visibility='hidden';
 
     fetch('5_search_contact_api.php', {
         method: 'POST',
@@ -171,6 +174,7 @@ if ($totalRows) {
     const sel = document.querySelector('#row').value
     const suggest = document.querySelector('#search').value
 
+
     const fd = new URLSearchParams({sid:sel,suggest:suggest});
 
     fetch(`5_get_suggest_api.php`, {
@@ -184,6 +188,9 @@ if ($totalRows) {
       .then(obj => {
         console.log(obj)
       })
+  }
+  function back(){
+    location.reload()
   }
 </script>
 <?php include __DIR__ . '/parts/index_footer.php'; ?>
