@@ -48,9 +48,9 @@ if (!empty($_FILES['pic']['name'])) {
 
     $sql =
         "INSERT INTO `products`
-    (`pic`,`product_name`,`price`,`member_price`,`info`)
+    (`pic`,`product_name`,`price`,`info`)
     VALUES
-    (?,?,?,?,?)";
+    (?,?,?,?)";
 
     $stmt = $pdo->prepare($sql);
 
@@ -58,7 +58,6 @@ if (!empty($_FILES['pic']['name'])) {
         $filename,
         $_POST['product_name'],
         $_POST['price'],
-        $_POST['member_price'],
         $_POST['info']
     ]);
 } else {
@@ -74,7 +73,7 @@ if (!empty($_FILES['pic']['name'])) {
 
     $sql =
         "INSERT INTO`products`
-    (`product_name`,`price`,`member_price`,`info`)
+    (`pic`,`product_name`,`price`,`info`)
     VALUES
     (?,?,?,?)";
 

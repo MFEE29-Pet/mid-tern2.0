@@ -3,7 +3,7 @@
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = 'root';
-$db_name = 'pet_shopping';
+$db_name = 'pets_project_all';
 
 $dsn = "mysql:host={$db_host};dbname={$db_name};charset=utf8"; // data source name
 

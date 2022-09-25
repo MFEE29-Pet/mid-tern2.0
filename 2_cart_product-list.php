@@ -135,7 +135,7 @@ exit;
         <?php foreach ($rows as $r) : ?>
             <div class="col">
                 <div class="card">
-                    <img src="http://localhost/eason_goods/store/<?= $r['pic'] ?>" class="card-img-top" width="450" height="475">
+                    <img src="./store/<?= $r['pic'] ?>" class="card-img-top" width="450" height="475">
                     <div class="card-body">
                         <h5 class="card-title"><?= $r['product_name'] ?></h5>
                         <p class="card-text">售價<?= $r['price'] ?>元</p>

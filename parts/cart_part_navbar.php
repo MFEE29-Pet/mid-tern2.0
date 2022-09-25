@@ -35,19 +35,19 @@ if (!isset($_SESSION)) {
 
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <?php if (isset($_SESSION['user'])) : ?>
+                    <?php if (isset($_SESSION['user1'])) : ?>
                         <li class="nav-item">
-                            <a class="nav-link"><?= $_SESSION['user']['nickname'] ?></a>
+                            <a class="nav-link"><?= $_SESSION['user1']['username'] ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#">登出</a>
+                            <a class="nav-link " href="5_user_login_page.php">登出</a>
                         </li>
                     <?php else : ?>
                         <li class="nav-item">
-                            <a class="nav-link " href="#">登入</a>
+                            <a class="nav-link " href="5_user_login_page.php">登入</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#">會員註冊</a>
+                            <a class="nav-link " href="5_user_register_page.php">會員註冊</a>
                         </li>
                     <?php endif; ?>
                 </ul>

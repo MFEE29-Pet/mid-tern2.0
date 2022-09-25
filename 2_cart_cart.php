@@ -64,7 +64,7 @@ $pageName = 'cart'; // 頁面名稱
             <span>總計: </span><span id="total-price"></span> 元
         </div>
         <div>
-            <?php if (empty($_SESSION['user'])) : ?>
+            <?php if (empty($_SESSION['user1'])) : ?>
                 <div class="alert alert-danger" role="alert">
                     請先登入會員, 再結帳
                 </div>

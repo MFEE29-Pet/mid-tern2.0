@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/parts/cart_connect_db.php';
 
-if(empty($_SESSION['user']) or empty($_SESSION['cart'])){
+if(empty($_SESSION['user1']) or empty($_SESSION['cart'])){
     header('Location: 2_cart_product-list.php');
     exit;
 }
@@ -16,9 +16,10 @@ foreach($_SESSION['cart'] as $k=>$v){
 
 $o_sql = sprintf("INSERT INTO `orders`(
     `member_sid`, `amount`, `ordered_date`
-    ) VALUES (%s, %s, NOW())", $_SESSION['user']['id'], $total);
+    ) VALUES (%s, %s, NOW())", $_SESSION['user1']['sid'], $total);
 
 $stmt = $pdo->query($o_sql);
+$order_sid = $pdo->lastInsertId(); // 訂單編號
 
 /*
 echo json_encode([
@@ -27,7 +28,6 @@ echo json_encode([
 ]);
 exit;
 */
-$order_sid = $pdo->lastInsertId(); // 訂單編號
 
 // 訂單明細
 $od_sql = "INSERT INTO `order_details`(`order_sid`, `product_sid`, `price`, `quantity`) VALUES (?, ?, ?, ?)";

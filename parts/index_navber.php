@@ -63,23 +63,23 @@ if (!isset($_SESSION)) {
           <div class="item">
             <a class="sub-btn">
               <i class="fa-solid fa-store"></i>
-              Store
+              商城管理
               <i class="fas fa-angle-right dropdown"></i>
             </a>
             <div class="sub-menu">
-              <a href="#" class="sub-item">Sub Item 01</a>
-              <a href="#" class="sub-item">Sub Item 02</a>
-              <a href="#" class="sub-item">Sub Item 03</a>
+              <a href="2_goods_product_list.php" class="sub-item">商品列表</a>
+              <a href="2_goods_insert_form.php" class="sub-item">新增商品</a>
+              <a href="2_cart_product-list.php" class="sub-item">購物車</a>
             </div>
           </div>
           <div class="item">
             <a class="sub-btn">
               <i class="fa-solid fa-campground"></i>
-              Camping
+              露營管理
               <i class="fas fa-angle-right dropdown"></i>
             </a>
             <div class="sub-menu">
-              <a href="#" class="sub-item">Sub Item 01</a>
+              <a href="#" class="sub-item">露營資訊管理</a>
               <a href="#" class="sub-item">Sub Item 02</a>
             </div>
           </div>

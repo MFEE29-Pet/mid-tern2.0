@@ -22,7 +22,6 @@ if (empty($_POST['product_name'])) {
 $sql = "UPDATE `products` SET 
 `product_name`=?,
 `price`=?,
-`member_price`=?,
 `info`=?
 WHERE sid=?";
 
@@ -31,7 +30,6 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute([
     $_POST['product_name'],
     $_POST['price'],
-    $_POST['member_price'],
     $_POST['info'],
     $_POST['sid']
 ]);

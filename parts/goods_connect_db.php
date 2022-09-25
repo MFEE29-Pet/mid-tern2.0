@@ -1,7 +1,7 @@
 <?php
 
 $db_host = 'localhost';
-$db_name = 'pet_shopping';
+$db_name = 'pets_project_all';
 $db_user = 'root';
 $db_pass = 'root';
 

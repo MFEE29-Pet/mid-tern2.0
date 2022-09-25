@@ -2,9 +2,9 @@
 $pageName = 'insert';
 ?>
 
-<?php include __DIR__ . '/parts/goods_part_head.php' ?>
+<?php include __DIR__ . '/parts/index_header.php' ?>
 
-<?php include __DIR__ . '/parts/goods_part_nav.php' ?>
+<?php include __DIR__ . '/parts/index_navber.php' ?>
 
 <div class="container">
     <div class="row">
@@ -32,14 +32,10 @@ $pageName = 'insert';
                         </div>
 
                         <div class="mb-3">
-                            <label for="price" class="form-label">標準售價</label>
+                            <label for="price" class="form-label">售價</label>
                             <input type="text" class="form-control" id="price" name="price" required pattern="\d-?">
                         </div>
 
-                        <div class="mb-3">
-                            <label for="member_price" class="form-label">會員價</label>
-                            <input type="text" class="form-control" id="member_price" name="member_price" required pattern="\d-?">
-                        </div>
 
                         <div class="mb-3">
                             <label for="info" class="form-label">商品簡述</label>
@@ -55,7 +51,7 @@ $pageName = 'insert';
     </div>
 </div>
 
-<?php include __DIR__ . '/parts/goods_part_script.php' ?>
+<?php include __DIR__ . '/parts/index_script.php' ?>
 
 
 <script>
@@ -95,4 +91,4 @@ $pageName = 'insert';
     }
 </script>
 
-<?php include __DIR__ . '/parts/goods_part_foot.php' ?>
+<?php include __DIR__ . '/parts/index_footer.php' ?>

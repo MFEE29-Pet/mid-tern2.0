@@ -66,10 +66,10 @@ $output = [
 
 ?>
 
-<?php include __DIR__ . '/parts/goods_part_head.php' ?>
+<?php include __DIR__ . '/parts/index_header.php' ?>
 
 
-<?php include __DIR__ . '/parts/goods_part_nav.php' ?>
+<?php include __DIR__ . '/parts/index_navber.php' ?>
 
 
 <div class="container">
@@ -133,11 +133,10 @@ $output = [
                             <i class="fa-solid fa-trash-can"></i>
                         </th>
 
-                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">商品圖</th>
                         <th scope="col">商品名稱</th>
-                        <th scope="col">標準售價</th>
-                        <th scope="col">會員價</th>
+                        <th scope="col">售價</th>
                         <th scope="col">商品簡述</th>
 
 
@@ -171,7 +170,6 @@ $output = [
                             <td><img src="./store/<?= $r['pic'] ?>" alt="" width="50" height="55"></td>
                             <td><?= $r['product_name'] ?></td>
                             <td><?= $r['price'] ?></td>
-                            <td><?= $r['member_price'] ?></td>
                             <td><?= $r['info'] ?></td>
 
                             <td>
@@ -192,7 +190,7 @@ $output = [
 
 
 
-<?php include __DIR__ . '/parts/goods_part_script.php' ?>
+<?php include __DIR__ . '/parts/index_script.php' ?>
 
 
 
@@ -223,4 +221,4 @@ $output = [
 </script>
 
 
-<?php include __DIR__ . '/parts/goods_part_foot.php' ?>
+<?php include __DIR__ . '/parts/index_foot.php' ?>
