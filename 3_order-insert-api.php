@@ -10,25 +10,10 @@ $output = [
     'postData' => $_POST, //除錯用
 ];
 
-// if(empty($_POST['membership-sid']) ) {
-//     $output['error'] = '欄位資料不足';
-//     $output['code'] = 400; 
-//     echo json_encode($output, JSON_UNESCAPED_UNICODE);
-//     exit;
-// }
-
-// TODO: 欄位資料要驗證
-
-// 如果時間的字串無法轉換成 timestamp, 表示格式錯誤
-// if (strtotime($_POST['check_in']) === false) {
-//     $check_in = null;
-// } else {
-//     $check_in = date('Y-m-d', strtotime($_POST['check_in']));
-// }
-
 
 
 $sql = "INSERT INTO `camping_order2`(
+    `membership-sid`,
     `check_in`,
     `check_out`,
     `people`,
@@ -45,6 +30,7 @@ $sql = "INSERT INTO `camping_order2`(
         ?,
         ?,
         ?,
+        ?,
         NOW()
     )";
 
@@ -53,6 +39,7 @@ $sql = "INSERT INTO `camping_order2`(
 $stmt = $pdo->prepare($sql);
 try {
     $stmt->execute([
+        $_POST['membership-sid'],
         $_POST['check_in'],
         $_POST['check_out'],
         $_POST['people'],
