@@ -51,6 +51,9 @@ if(chop($_POST['row']) === "member_sid"){
 // $stmt1 = $pdo->prepare($sql);
 
 $rows = $pdo->query($sql)->fetchAll();
+$suggest = array();
+
+array_push($suggest,$rows);
 
 
 // if ($stmt1->rowCount()) {
@@ -61,4 +64,4 @@ $rows = $pdo->query($sql)->fetchAll();
 // }
 
 
-echo json_encode($rows, JSON_UNESCAPED_UNICODE);
+echo json_encode($suggest, JSON_UNESCAPED_UNICODE);

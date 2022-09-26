@@ -53,7 +53,7 @@ if ($totalRows) {
 <?php include __DIR__ . '/parts/index_navber.php'; ?>
 <div class="container">
   <div class="row">
-    <form class="d-flex" name="form1" oninput="searchForm();return false;">
+    <form class="d-flex" name="form1" onsubmit="searchForm();return false;">
       <select class="form-select" aria-label="Default select example" name="row" id="row">
         <option selected>選擇搜尋欄位</option>
         <option value="member_sid">會員編號</option>
@@ -65,7 +65,7 @@ if ($totalRows) {
         <option value="area">區域</option>
         <option value="address_detail">詳細地址</option>
       </select>
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search" onkeyup="getSuggest();return false;">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search" oninput="getSuggest();return false;">
       <button class="btn btn-outline-success me-1" type="submit">Search</button>
       <button class="btn btn-outline-success" type="submit" onclick="back()">Back</button>
       <div class="result" id="result" style="position: absolute;top:157px;right:319px;width:565px">
@@ -152,22 +152,22 @@ if ($totalRows) {
       .then(r => r.json())
       .then(obj => {
         const table_change = document.querySelector('#table_change');
-        table_change.innerHTML = obj.map(el => {
+        table_change.innerHTML = obj[0].map(el => {
           return `<tr>
-                  <td>${el.sid}</td>
-                  <td>${el.name}</td>
-                  <td>${el.birthday}</td>
-                  <td>${el.email}</td>
-                  <td>${el.mobile}</td>
-                  <td>${el.city_name}</td>
-                  <td>${el.area_name}</td>
-                  <td>${el.address_detail}</td>
-                  <td>
-                    <a href="5_contact_edit_page.php?sid=${el.sid}">
-                      <i class="fa-regular fa-pen-to-square"></i>
-                    </a>
-                  </td>
-                </tr>`;
+                    <td>${el.sid}</td>
+                    <td>${el.name}</td>
+                    <td>${el.birthday}</td>
+                    <td>${el.email}</td>
+                    <td>${el.mobile}</td>
+                    <td>${el.city_name}</td>
+                    <td>${el.area_name}</td>
+                    <td>${el.address_detail}</td>
+                    <td>
+                      <a href="5_contact_edit_page.php?sid=${el.sid}">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                      </a>
+                    </td>
+                  </tr>`;
         }).join('')
 
       })
