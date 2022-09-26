@@ -59,6 +59,7 @@ $tag = $pdo->query($ta_sql)->fetchAll();
             echo $_SESSION['user1']['sid']; ?></a>
     <a class="link d-block" href="1_user_logout_api.php" style="width:40px;">登出</a>
 <?php endif; ?>
+<a href="1_insert-form.php" class="btn btn-primary m-3">發表文章</a>
 </div>
 
 
