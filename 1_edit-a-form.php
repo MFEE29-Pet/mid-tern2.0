@@ -103,7 +103,7 @@ $tag = $pdo->query($t_sql)->fetchAll();
             .then(obj => {
                 console.log(obj);
                 if (!obj.success) {
-                    if (confirm('確定不修改嗎?')) {
+                    if (confirm('確定不修改內容嗎?')) {
                         // 回到原頁
                         history.back();
                     }
