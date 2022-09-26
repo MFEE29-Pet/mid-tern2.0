@@ -203,13 +203,22 @@ if ($totalRows) {
           let btn = document.createElement("input");
           btn.setAttribute("type", "text");
           btn.setAttribute("value", value);
-          btn.classList.add("form-control","me-2");
+          btn.classList.add("form-control","me-2","add");
           docFrag.appendChild(btn);
           re.appendChild(docFrag);
-        })
 
+          
+          re.addEventListener('click',(event)=>{
+            let aaa = event.target.value;
+            document.querySelector('#search').value = aaa;
+            document.querySelector('#result').innerHTML = "";
+            
+          })
+        })
       })
   }
+
+
 
   function back() {
     location.reload()

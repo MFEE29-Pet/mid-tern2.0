@@ -40,7 +40,7 @@ if (!isset($_SESSION)) {
                             <a class="nav-link"><?= $_SESSION['user1']['username'] ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="5_user_login_page.php">登出</a>
+                            <a class="nav-link " href="5_logout_api.php">登出</a>
                         </li>
                     <?php else : ?>
                         <li class="nav-item">

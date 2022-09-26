@@ -40,7 +40,7 @@ $pageName = 'cart'; // 頁面名稱
                                     </a>
                                 </td>
                                 <td>
-                                    <img width="45" height="50" src="../eason_goods/store/<?= $v['pic'] ?>" alt="<?= $v['product_name'] ?>">
+                                    <img width="45" height="50" src="./store/<?= $v['pic'] ?>" alt="<?= $v['product_name'] ?>">
                                 </td>
                                 <td>
                                     <?= $v['product_name'] ?>
