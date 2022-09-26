@@ -20,6 +20,7 @@ $cate = isset($_GET['cate']) ? intval($_GET['cate']) : 0;
 $sql = "SELECT a.* , m.* FROM `article` a
 JOIN `members_data` m 
 ON a.`m_sid` = m.`sid`
+WHERE a.`article_sid` = $sid
 ";
 $r = $pdo->query($sql)->fetch();
 if (empty($r)) {

@@ -15,6 +15,10 @@ ON ta.`t_sid` = t.`sid`
 WHERE ta.`t_sid` =$tag";
 $ta = $pdo->query($t_sql)->fetchAll();
 
+$tn_sql = "SELECT * FROM tag
+WHERE sid = $tag";
+$tn=$pdo->query($tn_sql)->fetch();
+
 // echo print_r($ta);
 // foreach ($ta as $t) {
 //     echo print_r($t);
@@ -25,7 +29,7 @@ $ta = $pdo->query($t_sql)->fetchAll();
 ?>
 <?php include __DIR__ . '/parts/index_header.php'; ?>
 <?php include __DIR__ . '/parts/index_navber.php'; ?>
-<h6 style="text-align:center;"><?= $ta[0]['tag_name'] ?></h6>
+<h6 style="text-align:center;"><?= $tn['tag_name'] ?></h6>
 
 <div class="container">
     <a class="btn btn-primary" href="1_basepage.php">返回文章列表</a>
